@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/old.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <title>Understanding the CS Experience at Harvard</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar">
+    <div class="navbar-header">
+        <a href="#home">CS171</a>
+    </div>
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#perceptions">Perceptions</a></li>
+            <li><a href="#diversity">Diversity</a></li>
+            <li><a href="#growth">Growth of the Department</a></li>
+            <li><a href="#credits">Credits and Screencast</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="screen" id="home">
+    <div class="centered-container">
+        <div class="box title-box">
+            <center>
+                <div class="box-container">
+                <h1>Understanding the CS Experience at Harvard</h1>
+                <h3>By Alex Abrahams, Tommy O'Shea, and Annie Schugart</h3>
+                </div>
+            </div>
+        </center>
+        <center>
+            <div class="box time-box">
+                <h2>Since 2008, the number of computer science concentrators at Harvard has quadrupled. </h2>
+                <p>Even more students are earning a secondary in computer science or simply exploring
+                the field through a computer science class. It's becoming increasingly apparent: the computer science department is rapidly growing. But along with
+                this academic growth comes a growing concern about the gender and racial gap within computer science.</p>
+                <div id="timeVis"></div>
+            </div>
+        </center>
+    </div>
+</div>
+
+<div class="screen" id="intro">
+    <div class="description">
+        <h2>With a sample size of over 900, we're exploring the opinions about the computer science experience at Harvard. </h2>
+        <p>We're basing our analysis on data from the Women in Computer Science's survey, which obtained responses
+        from a wide range of Harvard students (both computer science concentrators and non-concentrators, men and women,
+            and varying races), as well as data obtained from Harvard's School of Engineering and Applied Sciences
+            (home of the computer science department).</p>
+    </div>
+</div>
+
+<div class="screen" id="perceptions">
+    <div class="centered-container">
+        <h2>Perceptions of CS</h2>
+        <div class="left">
+            <div id="wordcloud1" class='map'></div>
+            <div class="col-md-8 options">
+                <div class="col-md-4 gender_options">
+                    <h4>Gender:</h4>
+                    <form action="">
+                        <div class="radio">
+                          <label><input type="radio" name="optradio" value="all_gender" onchange="UpdateVisualization()">All</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio" value="1" onchange="UpdateVisualization()">Male</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio" value="0" onchange="UpdateVisualization()">Female</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 pcsb_options">
+                    <h4>Prior CS Background:</h4>
+                    <form action="">
+                        <div class="radio">
+                          <label><input type="radio" name="optradio" value="all_pcsb" onchange="UpdateVisualization()">All</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio" value="0" onchange="UpdateVisualization()">Never taken CS at Harvard</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio" value="2" onchange="UpdateVisualization()">Taken a CS class and intending to concentrate in CS</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 race_options">
+                    <h4>Race:</h4>
+                    <form action="">
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">All</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">___</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">____</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div id="wordcloud2"></div>
+            <div class="col-md-8 options">
+                <div class="col-md-4 gender_options">
+                    <h4>Gender:</h4>
+                    <form action="">
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">All</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">Male</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">Female</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 pcsb_options">
+                    <h4>Prior CS Background:</h4>
+                    <form action="">
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">All</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">Never taken CS at Harvard</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">Taken a CS class and intending to concentrate in CS</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 race_options">
+                    <h4>Race:</h4>
+                    <form action="">
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">All</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">___</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio">____</label>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="screen" id="diversity">
+    <div class="container">
+        <div class="left">
+<!--             <div class="box exec-description">
+                <h2>On death row</h2>
+                <h4>Over time, certain states have increased the number of executions they dole out.</h4>
+                <p>Slide the slider above the map to see this change over time. The graph below displays total state executions and total federal executions over time.</p>
+            </div> -->
+            <div id="prog_rating_bar"></div>
+        </div>
+        <div class="right">
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen" id="growth">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="centered-container">
+            <div class="box growth-box centered">
+                <h2>Why are people in jail?</h2>
+                <h4>The distributions of types of offenses are not the same for everybody.</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Violent Crimes include:</h5>
+                        <ul>
+                            <li>Murder</li>
+                            <li>Manslaughter</li>
+                            <li>Rape/sexual assault</li>
+                            <li>Robbery</li>
+                            <li>Aggravated or simple assault</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Property Crimes include:</h5>
+                        <ul>
+                            <li>Burglary</li>
+                            <li>Larceny-theft</li>
+                            <li>Motor vehicle theft</li>
+                            <li>Fraud</li>
+                            <li>Other property</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Drug Crimes include:</h5>
+                        <ul>
+                            <li>Drug possession</li>
+                            <li>Other drug</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="offensesContainer">
+                <div id="offenseVisGender"></div>
+                <div id="offenseVisRace"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<div class="screen" id="harassments">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="box centered sexual-harassment-box">
+            <h2>Sexual Harassment in Prison</h2>
+            <h4>It's no secret that sexual harassment is a huge problem worldwide. Even in jail, sexual misconduct by both inmates and staff is more common than you think.</h4>
+            <p>Because more prisoners stay in single-sex jails, non-heterosexual harassment occurs more often in jails across the nation. Not to be ignored is the significant amount of assault that comes from prison staff itself, and the mental health issues that stem from these types of assaults. And more often than not, prison officials face little to no punishment for committing acts of sexual violence against inmates.</p>
+            <p>Toggle between the various buttons below to see the percentages of <b>reported</b> instances of sexual assault in prisons, keeping in mind that, like many cases of sexual assault elsewhere, many instances do not get reported at all.</p>
+            <p class="small">N.B. "Mental Health" refers to the mental health state of the victim in question, not necessarily as a a result of the act of sexual harassment.</p>
+        </div>
+        <div id="sexualHarassmentVis" class="centered">
+            <div class="cool-btns type">
+                <input type="button" name="type" data-b="Inmate-on-inmate" value="Inmate-on-inmate" class="active">
+                <input type="button" name="type" data-b="Staff sexual misconduct" value="Staff sexual misconduct">
+            </div>
+            <br>
+            <div class="cool-btns category">
+                <input type="button" name="category" data-b="Sex" value="Sex" class="active">
+                <input type="button" name="category" data-b="Race" value="Race">
+                <input type="button" name="category" data-b="Age" value="Age">
+                <input type="button" name="category" data-b="Education" value="Education">
+                <input type="button" name="category" data-b="Mental Health Status" value="Mental Health Status">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="screen" id="international">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="centered-container">
+            <div class="left">
+                <div class="box">
+                    <h2>US and the World</h2>
+                    <h4>At 716 per 100,000 citizens, the United States has the highest incarceration rate of any country in the world.</h4>
+                    <p>And as the graph on the right demonstrates, the rest of the world ranks far below us. Even China has fewer of its own people behind bars, despite having a population roughly four times larger.</p>
+                    <p>Also worth noting:</p>
+                    <ul>
+                        <li>2013 marked the <a href="http://www.unodc.org/documents/data-and-analysis/statistics/Homicide/Globa_study_on_homicide_2011_web.pdf">first</a> year in Iceland's entire history that armed police killed someone.</li>
+                        <li>Russia has a lower crime rate than the US, but a much <a href="http://www.npr.org/blogs/parallels/2013/09/19/224043848/the-u-s-has-more-guns-but-russia-has-more-murders">higher murder rate</a>. In 2009, the US recorded 13,636 homicides while Russia has 21,603 homicides. However, American citizens collectively possess 10 times as many guns as Russians.</li>
+                        <li>San Marino, a country with a population of 30,000, has <a href="http://www.nytimes.com/2008/04/23/us/23prison.html">1 prisoner</a>.</li>
+                        <li>The average public jail <a href="http://www.theguardian.com/society/2014/apr/29/prisons-ordered-cust-costs-149-million-a-year">in the UK</a> spends approximately $33382 per prisoner per year, which is relatively <a href="http://www.cbsnews.com/news/the-cost-of-a-nation-of-incarceration/">close to the US</a> at $31,307 per year.
+                </div>
+            </div>
+            <div class="right">
+                <div class="box" style="text-align: center;">
+                    <h2>The Top 20: Prisoners per 100,000 Citizens</h2>
+                    <div id="internationalVis"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="screen" id="credits">
+    <div class="box centered" id="credits-box">
+        <h2>Credits</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Special Thanks</h4>
+                This project was entirely created by <a href="http://hughzabriskie.com/">Hugh Zabriskie</a> and <a href="http://cynthiameng.com/">Cynthia Meng</a>. Special thanks to Mimi Lai, the Bureau of Justice Statistics, CS 171, Mike Bostock, and D3.js.
+            </div>
+            <div class="col-md-4" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd; height: 100px">
+                <h4>Related Information</h4>
+                <a href="https://docs.google.com/document/d/16V6lA4QbM3BkKRmK9vnvPhiWgRwpgAxWAymV1RV-JoQ/edit?usp=sharing">Process book</a><br>
+                <a href="http://cynthiameng.com/cs171/screencast.html">Screencast</a>
+            </div>
+            <div class="col-md-4">
+                <h4>Data</h4>
+                <a href="http://www.bjs.gov/index.cfm?ty=tp&tid=13">Bureau of Justice Statistics (BJS)</a><br>
+                <a href="http://www.prisonstudies.org/highest-to-lowest/prison-population-total?field_region_taxonomy_tid=All">International Center for Prison Studies (ICPS)</a><br>
+                <a href="http://www.prisonpolicy.org/reports/rates.html">Prison Policy Initiative</a><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load JS libraries -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/queue.min.js"></script>
+<script src="js/d3.min.js"></script>
+<script src="js/d3.tip.js"></script>
+<script src="js/colorbrewer.js"></script>
+<script src="js/d3.layout.cloud.js"></script>
+
+<!-- Visualization js -->
+<script src="js/prog_rating_bar.js"></script>
+<script src="js/filtered_wordcloud1.js"></script>
+<script src="js/filtered_wordcloud2.js"></script>
+</body>
+
+</html>
