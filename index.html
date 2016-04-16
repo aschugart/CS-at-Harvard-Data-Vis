@@ -4,6 +4,31 @@
 <head>
     <meta charset="UTF-8">
 
+        <style>
+
+        body {
+          font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
+
+        /*.x.axis path {
+          display: none;
+        }*/
+
+        .line {
+          fill: none;
+          stroke: steelblue;
+          stroke-width: 1.5px;
+        }
+
+    </style>
+
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/old.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -180,43 +205,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="centered-container">
-            <div class="box growth-box centered">
-                <h2>Why are people in jail?</h2>
-                <h4>The distributions of types of offenses are not the same for everybody.</h4>
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5>Violent Crimes include:</h5>
-                        <ul>
-                            <li>Murder</li>
-                            <li>Manslaughter</li>
-                            <li>Rape/sexual assault</li>
-                            <li>Robbery</li>
-                            <li>Aggravated or simple assault</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Property Crimes include:</h5>
-                        <ul>
-                            <li>Burglary</li>
-                            <li>Larceny-theft</li>
-                            <li>Motor vehicle theft</li>
-                            <li>Fraud</li>
-                            <li>Other property</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Drug Crimes include:</h5>
-                        <ul>
-                            <li>Drug possession</li>
-                            <li>Other drug</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div id="offensesContainer">
-                <div id="offenseVisGender"></div>
-                <div id="offenseVisRace"></div>
-            </div>
+            <div id="line"></div>
         </div>
     </div>
 </div>
@@ -312,6 +301,7 @@
 <script src="js/prog_rating_bar.js"></script>
 <script src="js/filtered_wordcloud1.js"></script>
 <script src="js/filtered_wordcloud2.js"></script>
+<script src="js/line.js"></script>
 </body>
 
 </html>
