@@ -26,7 +26,7 @@ console.log(radius);
 
 var colorscale = d3.scale.ordinal()
     //.domain(["American Indian or Alaskan Native", "Asian", "Black or African American", "Caucasian", "Hispanic or Latino", "Other"])
-    .range(["#33CC31", "#CC33FF", "#33CC35", "#33CC33", "#33CC34", "#33CC38"]);
+    .range(["#333", "#DAE2DF", "#33CC35", "#00526B", "#8B3547", "#48B0AC"]);
 
 console.log(colorscale("Male"));
 console.log(colorscale("Female"));
