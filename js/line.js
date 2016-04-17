@@ -56,12 +56,17 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
     };
   });
 
+  console.log("Cities: ");
   console.log(cities);
 
   x.domain(d3.extent(data, function(d) { return d["AcademicYear"]; }));
 
   y.domain([
-    d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.number; }); }),
+    d3.min(cities, function(c) { 
+      return d3.min(c.values, function(v) { 
+        return v.number; 
+      }); 
+    }),
     d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.number; }); })
   ]);
 
@@ -79,6 +84,44 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
       .attr("dy", ".71em")
       .style("text-anchor", "end");
       // .text("Temperature (ºF)");
+
+  // circles
+  // cities.forEach(function (d,i) {
+  //   var circles = svg.selectAll(".circle-group-"+i)
+  //     .data(d.values);
+
+  //   circles.enter().append("circle")
+
+  // })
+
+  // var circlegroups = svg.selectAll(".circle-group")
+  //   .data(cities);
+
+  // // Data enter
+  // circlegroups.enter().append("g");
+
+  // var circle = circlegroups.selectAll('circle')
+  //   .data(function (d) { return d.values; });
+
+  // // data update for circle
+  // circle
+  //   .transition(3000)
+  //   .duration(800)
+  //   .attr("cx", function(d) {
+  //     return x(d.date);
+  //   })
+  //   .attr("cy", function(d) {
+  //     return y(d.number);
+  //   })
+  //   .attr("r", 8)
+  //   .attr("fill", "steelblue");
+
+  // circle
+  //   .on('mouseover', tip.show)
+  //   .on('mouseout', tip.hide);
+
+  // // Data exit
+  // circle.exit().remove();
 
   var city = svg.selectAll(".city")
       .data(cities)

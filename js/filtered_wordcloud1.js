@@ -1,7 +1,7 @@
 var border = 1;
 var bordercolor='black';
 
-var frequency_list = [{"text":"study","size":40},{"text":"motion","size":15},{"text":"forces","size":10}];
+// var frequency_list = [{"text":"study","size":40},{"text":"motion","size":15},{"text":"forces","size":10}];
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width_wordcloud = 500 - margin.left - margin.right,
@@ -56,8 +56,6 @@ function UpdateVisualization() {
     }
     });
 
-    console.log(gender_filter);
-
     pcsb_filter = gender_filter.filter(function (d) {
         if (selected1_pcsb == "all_pcsb") {
             return gender_filter;
@@ -65,7 +63,6 @@ function UpdateVisualization() {
             return (d["exp_level"] == selected1_pcsb);
         }
     });
-    console.log(pcsb_filter);
 
     race_filter = pcsb_filter.filter(function (d) {
         if (selected1_race == "all_race") {
@@ -77,74 +74,56 @@ function UpdateVisualization() {
 
     var filteredData = race_filter;
 
-    console.log(filteredData);
-
     // create big array of words that we have filtered for
-    var words = [];
+    var words_list = [];
     filteredData.forEach(function (d) {
-        words = words.concat(d["words"]);
+        words_list = words_list.concat(d["words"]);
     })
 
-    console.log(words);
-
-    // NEXT STEPS:
-    // create the word_frequency array
-
     // create array of frequencies with words
-    // function isInArray(things, thing) {
-    //     return things.indexOf(thing) > -1;
-    // }
 
-    // var word_frequencies = [];
-    // words.forEach(function (d) {
-    //     if (isInArray(word_frequencies, d)) {
-    //         // then increment that d's size by 1
+    var word_frequencies = {};
+    words_list.forEach(function (d) {
+        word_frequencies[d] = {"text": d, "size": 0}
+    });
+    words_list.forEach(function (d) {
+        word_frequencies[d].size++;
+    });
 
-    //     } else {
-    //         // add the object to word_frequencies
-    //         word_frequencies.push({text: d,size: 0})
-    //     }
-    // })
-
-
-    // var word_frequencies = words.map(function(word) {
-    //     return {
-    //         text: word,
-    //         size: 
-    //     };
-    // });
-
+    word_frequencies = d3.values(word_frequencies);
+    console.log(word_frequencies);
 
     var color2 = d3.scale.linear()
         .domain([0,1,2,3,4,5,6,10,15,20,100])
         .range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
 
     d3.layout.cloud().size([800, 300])
-        .words(frequency_list)
+        .words(word_frequencies)
         .rotate(0)
         .fontSize(function(d) { return d.size; })
         .on("end", draw)
         .start();
 
     function draw(words) {
-        // d3.select("#wordcloud1")
-            // .attr("width", 500)
-            // .attr("height", 350)
-            // .attr("class", "wordcloud1")
-            // .attr("style", "outline: thin solid black;")
-            // .append("g")
-        svg_wordcloud1
+        var wordcloud = svg_wordcloud1
             // without the transform, words words would get cutoff to the left and top, they would
             // appear outside of the SVG area
-            .attr("transform", "translate(110,200)")
+            .attr("transform", "translate(200,200)")
             .selectAll("text")
-            .data(words)
-            .enter().append("text")
-            .style("font-size", function(d) { return d.size + "px"; })
+            .data(words);
+
+        wordcloud.enter().append("text")
+            .style("font-size", function(d) { 
+                console.log("hey there");
+                return d.size + "px"; 
+            })
             .style("fill", function(d, i) { return color2(i); })
-            .attr("transform", function(d) {
+        
+        wordcloud.attr("transform", function(d) {
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
             })
             .text(function(d) { return d.text; });
+
+        wordcloud.exit().remove();
     }
 }
