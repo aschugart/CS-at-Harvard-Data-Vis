@@ -68,43 +68,43 @@
             <div class="col-md-8 options">
                 <div class="col-md-4 gender_options">
                     <h4>Gender:</h4>
-                    <form action="">
+                    <form action="" id="gender1option" onchange="UpdateVisualization()">
                         <div class="radio">
-                          <label><input type="radio" name="optradio" value="all_gender" onchange="UpdateVisualization()">All</label>
+                          <label><input type="radio" name="gender1option" value="all_gender" checked="checked">All</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio" value="1" onchange="UpdateVisualization()">Male</label>
+                          <label><input type="radio" name="gender1option" value="1">Male</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio" value="0" onchange="UpdateVisualization()">Female</label>
+                          <label><input type="radio" name="gender1option" value="0">Female</label>
                         </div>
                     </form>
                 </div>
                 <div class="col-md-4 pcsb_options">
                     <h4>Prior CS Background:</h4>
-                    <form action="">
+                    <form action="" id="pcsb1option" onchange="UpdateVisualization()">
                         <div class="radio">
-                          <label><input type="radio" name="optradio" value="all_pcsb" onchange="UpdateVisualization()">All</label>
+                          <label><input type="radio" name="pcsb1option" value="all_pcsb" checked="checked">All</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio" value="0" onchange="UpdateVisualization()">Never taken CS at Harvard</label>
+                          <label><input type="radio" name="pcsb1option" value="0">Never taken CS at Harvard</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio" value="2" onchange="UpdateVisualization()">Taken a CS class and intending to concentrate in CS</label>
+                          <label><input type="radio" name="pcsb1option" value="2">Taken a CS class and intending to concentrate in CS</label>
                         </div>
                     </form>
                 </div>
                 <div class="col-md-4 race_options">
                     <h4>Race:</h4>
-                    <form action="">
+                    <form action="" id="race1option" onchange="UpdateVisualization()">
                         <div class="radio">
-                          <label><input type="radio" name="optradio">All</label>
+                          <label><input type="radio" name="race1option" checked="checked">All</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio">___</label>
+                          <label><input type="radio" name="race1option">___</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio">____</label>
+                          <label><input type="radio" name="race1option">____</label>
                         </div>
                     </form>
                 </div>
