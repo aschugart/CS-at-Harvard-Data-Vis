@@ -93,10 +93,4 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
       })
       .style("stroke", function(d) { return color(d.name); });
 
-  city.append("text")
-      .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-      .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.number) + ")"; })
-      .attr("x", 3)
-      .attr("dy", ".35em")
-      .text(function(d) { return d.name; });
 });
