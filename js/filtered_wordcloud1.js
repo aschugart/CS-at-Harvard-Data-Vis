@@ -23,15 +23,16 @@ function loadData() {
     d3.json("data/words.json", function(error, json) {
         if (error) return console.warn(error);
         data = json;
-        console.log(data);
     });
     UpdateVisualization();
 };
 
 // Default values for wordcloud1
-var selected1_gender = "all";
-var selected1_pcsb = "all";
-var selected1_race = "all";
+var selected1_gender = "all_gender";
+var selected1_pcsb = "all_pcsb";
+var selected1_race = "all_race";
+
+console.log("bobcat");
 
 function UpdateVisualization() {
     // Get the filtered array
@@ -41,6 +42,58 @@ function UpdateVisualization() {
     console.log(selected1_gender);
     console.log(selected1_pcsb);
     console.log(selected1_race);
+
+    var filteredData = data.filter(function (d) {
+        var gender_filter;
+        var pcsb_filter;
+        var race_filter;
+
+        gender_filter = data.filter(function (d) {
+            if (selected1_gender == "all_gender") {
+                return data;
+        } else {
+            return (d["gender"] == selected1_gender);
+        }
+        });
+
+        console.log(gender_filter);
+
+        pcsb_filter = gender_filter.filter(function (d) {
+            if (selected1_pcsb == "all_pcsb") {
+                return gender_filter;
+            } else {
+                return (d["exp_level"] == selected1_pcsb);
+            }
+        });
+        console.log(pcsb_filter);
+
+        race_filter = pcsb_filter.filter(function (d) {
+            if (selected1_race == "all_race") {
+                return pcsb_filter;
+            } else {
+                return (d["race"] == selected1_race);
+            }
+        })
+        console.log(race_filter);
+
+        return race_filter;
+    });
+
+    console.log(filteredData);
+
+    // create big array of words that we have filtered for
+    
+
+
+    // create array of frequencies with words
+    var word_frequencies = filteredData.map(function(name) {
+        return {
+            text: name,
+            size: filteredData.map(function(d) {
+                return {Date: d.Date, candidate: +d[name]};
+            })
+        };
+    });
 
 
     var color2 = d3.scale.linear()
