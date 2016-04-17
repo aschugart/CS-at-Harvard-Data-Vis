@@ -23,8 +23,8 @@ function loadData() {
     d3.json("data/words.json", function(error, json) {
         if (error) return console.warn(error);
         data = json;
+        UpdateVisualization();
     });
-    UpdateVisualization();
 };
 
 // Default values for wordcloud1
@@ -43,57 +43,76 @@ function UpdateVisualization() {
     console.log(selected1_pcsb);
     console.log(selected1_race);
 
-    var filteredData = data.filter(function (d) {
-        var gender_filter;
-        var pcsb_filter;
-        var race_filter;
+    // filter the array
+    var gender_filter;
+    var pcsb_filter;
+    var race_filter;
 
-        gender_filter = data.filter(function (d) {
-            if (selected1_gender == "all_gender") {
-                return data;
-        } else {
-            return (d["gender"] == selected1_gender);
-        }
-        });
-
-        console.log(gender_filter);
-
-        pcsb_filter = gender_filter.filter(function (d) {
-            if (selected1_pcsb == "all_pcsb") {
-                return gender_filter;
-            } else {
-                return (d["exp_level"] == selected1_pcsb);
-            }
-        });
-        console.log(pcsb_filter);
-
-        race_filter = pcsb_filter.filter(function (d) {
-            if (selected1_race == "all_race") {
-                return pcsb_filter;
-            } else {
-                return (d["race"] == selected1_race);
-            }
-        })
-        console.log(race_filter);
-
-        return race_filter;
+    gender_filter = data.filter(function (d) {
+        if (selected1_gender == "all_gender") {
+            return data;
+    } else {
+        return (d["gender"] == selected1_gender);
+    }
     });
+
+    console.log(gender_filter);
+
+    pcsb_filter = gender_filter.filter(function (d) {
+        if (selected1_pcsb == "all_pcsb") {
+            return gender_filter;
+        } else {
+            return (d["exp_level"] == selected1_pcsb);
+        }
+    });
+    console.log(pcsb_filter);
+
+    race_filter = pcsb_filter.filter(function (d) {
+        if (selected1_race == "all_race") {
+            return pcsb_filter;
+        } else {
+            return (d["race"] == selected1_race);
+        }
+    })
+
+    var filteredData = race_filter;
 
     console.log(filteredData);
 
     // create big array of words that we have filtered for
-    
+    var words = [];
+    filteredData.forEach(function (d) {
+        words = words.concat(d["words"]);
+    })
 
+    console.log(words);
+
+    // NEXT STEPS:
+    // create the word_frequency array
 
     // create array of frequencies with words
-    var word_frequencies = filteredData.map(function(name) {
-        return {
-            text: name,
-            size: filteredData.map(function(d) {
-                return {Date: d.Date, candidate: +d[name]};
-            })
-        };
-    });
+    // function isInArray(things, thing) {
+    //     return things.indexOf(thing) > -1;
+    // }
+
+    // var word_frequencies = [];
+    // words.forEach(function (d) {
+    //     if (isInArray(word_frequencies, d)) {
+    //         // then increment that d's size by 1
+
+    //     } else {
+    //         // add the object to word_frequencies
+    //         word_frequencies.push({text: d,size: 0})
+    //     }
+    // })
+
+
+    // var word_frequencies = words.map(function(word) {
+    //     return {
+    //         text: word,
+    //         size: 
+    //     };
+    // });
 
 
     var color2 = d3.scale.linear()
