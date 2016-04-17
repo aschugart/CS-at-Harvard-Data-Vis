@@ -4,6 +4,31 @@
 <head>
     <meta charset="UTF-8">
 
+        <style>
+
+        body {
+          font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
+
+        /*.x.axis path {
+          display: none;
+        }*/
+
+        .line {
+          fill: none;
+          stroke: steelblue;
+          stroke-width: 1.5px;
+        }
+
+    </style>
+
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/old.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -58,8 +83,14 @@
             and varying races), as well as data obtained from Harvard's School of Engineering and Applied Sciences
             (home of the computer science department).</p>
     </div>
+        <div class="box centered">
+        <div class="row">
+            <div class="col-md-4" id="chart-area"></div>
+            <div class="col-md-4" id="chart-area2"></div>
+            <div class="col-md-4" id="chart-area3"></div>
+        </div>
+    </div>
 </div>
-
 <div class="screen" id="perceptions">
     <div class="centered-container">
         <h2>Perceptions of CS</h2>
@@ -162,13 +193,13 @@
 </div>
 <div class="screen" id="diversity">
     <div class="container">
-        <div class="left">
+        <div class="centered-container">
 <!--             <div class="box exec-description">
                 <h2>On death row</h2>
                 <h4>Over time, certain states have increased the number of executions they dole out.</h4>
                 <p>Slide the slider above the map to see this change over time. The graph below displays total state executions and total federal executions over time.</p>
             </div> -->
-            <div id="prog_rating_bar"></div>
+            <center><div id="prog_rating_bar"></div></center>
         </div>
         <div class="right">
             
@@ -180,43 +211,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="centered-container">
-            <div class="box growth-box centered">
-                <h2>Why are people in jail?</h2>
-                <h4>The distributions of types of offenses are not the same for everybody.</h4>
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5>Violent Crimes include:</h5>
-                        <ul>
-                            <li>Murder</li>
-                            <li>Manslaughter</li>
-                            <li>Rape/sexual assault</li>
-                            <li>Robbery</li>
-                            <li>Aggravated or simple assault</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Property Crimes include:</h5>
-                        <ul>
-                            <li>Burglary</li>
-                            <li>Larceny-theft</li>
-                            <li>Motor vehicle theft</li>
-                            <li>Fraud</li>
-                            <li>Other property</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Drug Crimes include:</h5>
-                        <ul>
-                            <li>Drug possession</li>
-                            <li>Other drug</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div id="offensesContainer">
-                <div id="offenseVisGender"></div>
-                <div id="offenseVisRace"></div>
-            </div>
+            <center><div id="line"></div></center>
         </div>
     </div>
 </div>
@@ -309,9 +304,13 @@
 <script src="js/d3.layout.cloud.js"></script>
 
 <!-- Visualization js -->
+<script src="js/genderpie.js"></script>
+<script src="js/concentratorpie.js"></script>
+<script src="js/racepie.js"></script>
 <script src="js/prog_rating_bar.js"></script>
 <script src="js/filtered_wordcloud1.js"></script>
 <script src="js/filtered_wordcloud2.js"></script>
+<script src="js/line.js"></script>
 </body>
 
 </html>
