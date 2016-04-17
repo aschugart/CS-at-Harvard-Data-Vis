@@ -83,8 +83,14 @@
             and varying races), as well as data obtained from Harvard's School of Engineering and Applied Sciences
             (home of the computer science department).</p>
     </div>
+        <div class="box centered">
+        <div class="row">
+            <div class="col-md-4" id="chart-area"></div>
+            <div class="col-md-4" id="chart-area2"></div>
+            <div class="col-md-4" id="chart-area3"></div>
+        </div>
+    </div>
 </div>
-
 <div class="screen" id="perceptions">
     <div class="centered-container">
         <h2>Perceptions of CS</h2>
@@ -187,13 +193,13 @@
 </div>
 <div class="screen" id="diversity">
     <div class="container">
-        <div class="left">
+        <div class="centered-container">
 <!--             <div class="box exec-description">
                 <h2>On death row</h2>
                 <h4>Over time, certain states have increased the number of executions they dole out.</h4>
                 <p>Slide the slider above the map to see this change over time. The graph below displays total state executions and total federal executions over time.</p>
             </div> -->
-            <div id="prog_rating_bar"></div>
+            <center><div id="prog_rating_bar"></div></center>
         </div>
         <div class="right">
             
@@ -205,7 +211,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="centered-container">
-            <div id="line"></div>
+            <center><div id="line"></div></center>
         </div>
     </div>
 </div>
@@ -298,6 +304,9 @@
 <script src="js/d3.layout.cloud.js"></script>
 
 <!-- Visualization js -->
+<script src="js/genderpie.js"></script>
+<script src="js/concentratorpie.js"></script>
+<script src="js/racepie.js"></script>
 <script src="js/prog_rating_bar.js"></script>
 <script src="js/filtered_wordcloud1.js"></script>
 <script src="js/filtered_wordcloud2.js"></script>
