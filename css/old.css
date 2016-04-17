@@ -127,7 +127,7 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 .box {
     position: center;
     color: #eee;
-    padding: 100px 10px 4px 19px;
+    padding: 4px 10px 4px 19px;
     width: 500px;
 }
 
