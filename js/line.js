@@ -15,7 +15,8 @@ var x = d3.time.scale()
 var y = d3.scale.linear()
     .range([height, 0]);
 
-var color = d3.scale.category10();
+var color = d3.scale.ordinal()
+    .range(["#00526B", "#8B3547", "7B9DA6"]);
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -135,5 +136,13 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
         return line(d.values); 
       })
       .style("stroke", function(d) { return color(d.name); });
+      
+  city.append("text")
+       .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+       .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.number) + ")"; })
+       .attr("x", 3)
+       .attr("dy", ".35em")
+       .text(function(d) { return d.name; });
+
 
 });

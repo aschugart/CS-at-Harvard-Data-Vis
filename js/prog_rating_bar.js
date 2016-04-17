@@ -14,8 +14,8 @@ var x1 = d3.scale.ordinal();
 var y = d3.scale.linear()
     .range([height, 0]);
 
-// var color = d3.scale.ordinal()
-//     .range(["#8B3547", "#00526B"]);
+var color = d3.scale.ordinal()
+     .range(["#8B3547", "#FF0000"]);
 
 var xAxis = d3.svg.axis()
     .scale(x0)
@@ -94,7 +94,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
         .style("fill", #00526B);
-        // .style("fill", function(d) { return color(d.name); });
+        .style("fill", function(d) { return color(d.name); });
 
     var legend_prog_rating = svg_prog_rating.selectAll(".legend")
         .data(genderNames.slice().reverse())
@@ -107,7 +107,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", #00526B);
-        // .style("fill", color);
+        .style("fill", color);
 
     legend_prog_rating.append("text")
         .attr("x", width - 24)
