@@ -18,7 +18,7 @@ var svg = d3.select("#chart-area2").append("svg")
 console.log(radius);
 
 var colorscale = d3.scale.ordinal()
-    .range(["#6633FF", "#FF0066"]);
+    .range(["#FF0000", "#FF0000"]);
 
 
 var tip = d3.tip()

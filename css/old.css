@@ -6,9 +6,8 @@
  *
  */
 
-/* FONT: Lato; */
-@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic,700italic,900italic);
-
+/* FONT: Josefin Sans; */
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
 
 /*
  *
@@ -99,7 +98,8 @@ p {
     line-height: 25px;
 }
 
-a, h1 a, h2 a, h3 a, h4 a { text-decoration: none; color: #3B8FD7; }
+h1{ font-family: 'Josefin Sans', sans-serif;}
+a, h1 a, h2 a, h3, h4 a { text-decoration: none;  color: #3B8FD7; font-family: 'Josefin Sans', sans-serif;}
 a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none; color: #53AFFF; }
 
 .highlighted { color: #3B8FD7; }
@@ -146,7 +146,7 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 /* HOME SCREEN */
 #home {
-    background: #90CCE0;
+    background: #7BCFDB;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -170,7 +170,7 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 /* INTRO SCREEN */
 #intro { 
-    background: #B192D1; 
+    background: #6D696A; 
 }
 #intro > .overlay {
     background-color: rgba(49,7,7,0.4);
@@ -189,11 +189,15 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 /* PERCEPTIONS SCREEN */
 #perceptions {
-    background: #DB7D8A;
+    background: #DAE2DF;
 }
 
 
 /* BREAKDOWN SCREEN */
+#perceptions {
+    background: #8B3547;
+}
+
 .left { width: 55%; float:left; }
 .right { width: 45%; float:right; }
 .centered {
@@ -230,6 +234,7 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 /* EXECUTIONS SCREEN */
 #diversity {
+    background: #48B0AC;
     
 }
 

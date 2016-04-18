@@ -25,7 +25,8 @@ var svg = d3.select("#chart-area3").append("svg")
 console.log(radius);
 
 var colorscale = d3.scale.ordinal()
-    .range(["#6633FF", "#CC33FF", "#33CC33", "#CCFF33", "#FF6600", "#FF0066"]);
+    //.domain(["American Indian or Alaskan Native", "Asian", "Black or African American", "Caucasian", "Hispanic or Latino", "Other"])
+    .range(["#333", "#DAE2DF", "#33CC35", "#00526B", "#8B3547", "#48B0AC"]);
 
 var tip = d3.tip()
    .attr('class', 'd3-tip')
