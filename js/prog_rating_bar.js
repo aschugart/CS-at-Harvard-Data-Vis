@@ -11,20 +11,20 @@ var x0 = d3.scale.ordinal()
 
 var x1 = d3.scale.ordinal();
 
-var y = d3.scale.linear()
+var y_prog = d3.scale.linear()
     .range([height, 0]);
 
 var color = d3.scale.ordinal()
      .range(["#8B3547", "#FF0000"]);
 
-var xAxis = d3.svg.axis()
+var xAxis_prog = d3.svg.axis()
     .scale(x0)
     .orient("bottom");
 
 //var formatPercent = d3.format(".0%");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
+var yAxis_prog = d3.svg.axis()
+    .scale(y_prog)
     .orient("left")
     //.tickFormat(formatPercent);
     .tickFormat(d3.format(".2s"));
@@ -55,7 +55,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
 
     x0.domain(data.map(function(d) { return d["Rating"]; }));
     x1.domain(genderNames).rangeRoundBands([0, x0.rangeBand()]);
-    y.domain([0, 100]);
+    y_prog.domain([0, 100]);
 
     tip
         .html(function(d) {
@@ -66,11 +66,11 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
     svg_prog_rating.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis_prog);
 
     svg_prog_rating.append("g")
         .attr("class", "y axis")
-        .call(yAxis)
+        .call(yAxis_prog)
         .append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 6)
@@ -89,11 +89,10 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
         .enter().append("rect")
         .attr("width", x1.rangeBand())
         .attr("x", function(d) { return x1(d.name); })
-        .attr("y", function(d) { return y(d.value); })
-        .attr("height", function(d) { return height - y(d.value); })
+        .attr("y", function(d) { return y_prog(d.value); })
+        .attr("height", function(d) { return height - y_prog(d.value); })
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
-        //.style("fill", #00526B);
         .style("fill", function(d) { return color(d.name); });
 
     var legend_prog_rating = svg_prog_rating.selectAll(".legend")
@@ -106,7 +105,6 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
         .attr("x", width - 18)
         .attr("width", 18)
         .attr("height", 18)
-        //.style("fill", #00526B);
         .style("fill", color);
 
     legend_prog_rating.append("text")

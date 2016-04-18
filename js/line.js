@@ -31,7 +31,7 @@ var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.number); });
 
-var svg = d3.select("#line").append("svg")
+var svg_line_graph = d3.select("#line").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -57,21 +57,26 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
     };
   });
 
-  console.log(cities);
+  // console.log("Cities: ");
+  // console.log(cities);
 
   x.domain(d3.extent(data, function(d) { return d["AcademicYear"]; }));
 
   y.domain([
-    d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.number; }); }),
+    d3.min(cities, function(c) { 
+      return d3.min(c.values, function(v) { 
+        return v.number; 
+      }); 
+    }),
     d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.number; }); })
   ]);
 
-  svg.append("g")
+  svg_line_graph.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-  svg.append("g")
+  svg_line_graph.append("g")
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
@@ -81,7 +86,45 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
       .style("text-anchor", "end");
       // .text("Temperature (ºF)");
 
-  var city = svg.selectAll(".city")
+  // circles
+  // cities.forEach(function (d,i) {
+  //   var circles = svg.selectAll(".circle-group-"+i)
+  //     .data(d.values);
+
+  //   circles.enter().append("circle")
+
+  // })
+
+  // var circlegroups = svg.selectAll(".circle-group")
+  //   .data(cities);
+
+  // // Data enter
+  // circlegroups.enter().append("g");
+
+  // var circle = circlegroups.selectAll('circle')
+  //   .data(function (d) { return d.values; });
+
+  // // data update for circle
+  // circle
+  //   .transition(3000)
+  //   .duration(800)
+  //   .attr("cx", function(d) {
+  //     return x(d.date);
+  //   })
+  //   .attr("cy", function(d) {
+  //     return y(d.number);
+  //   })
+  //   .attr("r", 8)
+  //   .attr("fill", "steelblue");
+
+  // circle
+  //   .on('mouseover', tip.show)
+  //   .on('mouseout', tip.hide);
+
+  // // Data exit
+  // circle.exit().remove();
+
+  var city = svg_line_graph.selectAll(".city")
       .data(cities)
     .enter().append("g")
       .attr("class", "city");
