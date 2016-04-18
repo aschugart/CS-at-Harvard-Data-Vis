@@ -18,10 +18,10 @@ var svg = d3.select("#chart-area2").append("svg")
 console.log(radius);
 
 var colorscale = d3.scale.ordinal()
-    .range(["#FF0000", "#FF0000"]);
+    .range(["#A6D8DE", "#F9F1B5"]);
 
-console.log(colorscale("Male"));
-console.log(colorscale("Female"));
+// console.log(colorscale("Male"));
+// console.log(colorscale("Female"));
 
 var arc = d3.svg.arc()
     .outerRadius(radius - 10)
@@ -54,4 +54,5 @@ g.append("path")
 g.append("text")
     .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
     .attr("dy", ".35em")
-    .text(function(d) {return d.data.label + ": " + d.data.value});
+    .text(function(d) {return d.data.label + ": " + d.data.value})
+    .attr("fill","black");

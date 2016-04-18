@@ -22,7 +22,7 @@ var svg = d3.select("#chart-area").append("svg")
 console.log(radius);
 
 var colorscale = d3.scale.ordinal()
-    .range(["#7B9DA6", "#8B3547"]);
+    .range(["#A6D8DE", "#F9F1B5"]);
 
 console.log(colorscale("Male"));
 console.log(colorscale("Female"));
@@ -65,4 +65,5 @@ g.append("path")
 g.append("text")
     .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
     .attr("dy", ".35em")
-    .text(function(d) {return d.data.label + ": " + d.data.value});
+    .text(function(d) {return d.data.label + ": " + d.data.value})
+    .attr("fill","black");
