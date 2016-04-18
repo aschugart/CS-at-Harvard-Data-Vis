@@ -93,7 +93,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
         .attr("height", function(d) { return height - y(d.value); })
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
-        .style("fill", #00526B);
+        //.style("fill", #00526B);
         .style("fill", function(d) { return color(d.name); });
 
     var legend_prog_rating = svg_prog_rating.selectAll(".legend")
@@ -106,7 +106,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
         .attr("x", width - 18)
         .attr("width", 18)
         .attr("height", 18)
-        .style("fill", #00526B);
+        //.style("fill", #00526B);
         .style("fill", color);
 
     legend_prog_rating.append("text")
