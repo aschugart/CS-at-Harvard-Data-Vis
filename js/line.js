@@ -31,7 +31,7 @@ var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.number); });
 
-var svg = d3.select("#line").append("svg")
+var svg_line_graph = d3.select("#line").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -57,8 +57,8 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
     };
   });
 
-  console.log("Cities: ");
-  console.log(cities);
+  // console.log("Cities: ");
+  // console.log(cities);
 
   x.domain(d3.extent(data, function(d) { return d["AcademicYear"]; }));
 
@@ -71,12 +71,12 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
     d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.number; }); })
   ]);
 
-  svg.append("g")
+  svg_line_graph.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-  svg.append("g")
+  svg_line_graph.append("g")
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
@@ -124,7 +124,7 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
   // // Data exit
   // circle.exit().remove();
 
-  var city = svg.selectAll(".city")
+  var city = svg_line_graph.selectAll(".city")
       .data(cities)
     .enter().append("g")
       .attr("class", "city");

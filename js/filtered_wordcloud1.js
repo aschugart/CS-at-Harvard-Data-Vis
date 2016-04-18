@@ -32,16 +32,11 @@ var selected1_gender = "all_gender";
 var selected1_pcsb = "all_pcsb";
 var selected1_race = "all_race";
 
-console.log("bobcat");
-
 function UpdateVisualization() {
     // Get the filtered array
     selected1_gender = d3.select('input[name="gender1option"]:checked').node().value
     selected1_pcsb = d3.select('input[name="pcsb1option"]:checked').node().value
     selected1_race = d3.select('input[name="race1option"]:checked').node().value
-    console.log(selected1_gender);
-    console.log(selected1_pcsb);
-    console.log(selected1_race);
 
     // filter the array
     var gender_filter;
@@ -113,8 +108,7 @@ function UpdateVisualization() {
             .data(words);
 
         wordcloud.enter().append("text")
-            .style("font-size", function(d) { 
-                console.log("hey there");
+            .style("font-size", function(d) {
                 return d.size + "px"; 
             })
             .style("fill", function(d, i) { return color2(i); })
