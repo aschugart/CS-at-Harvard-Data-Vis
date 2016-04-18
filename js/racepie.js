@@ -31,6 +31,12 @@ var colorscale = d3.scale.ordinal()
 console.log(colorscale("Male"));
 console.log(colorscale("Female"));
 
+var tip = d3.tip()
+   .attr('class', 'd3-tip')
+   .offset([-10, 0]);
+
+svg.call(tip);
+
 var arc = d3.svg.arc()
     .outerRadius(radius - 10)
     .innerRadius(0);
@@ -43,6 +49,11 @@ var pie = d3.layout.pie()
     .sort(null)
     .value(function(d, index) { return d.value});
 
+tip
+   .html(function(d) {
+       return d.data.label+ " : " +  d.value;
+   });
+
 var g = svg.selectAll(".arc")
     .data(pie(numbers))
 
@@ -51,7 +62,9 @@ var g = svg.selectAll(".arc")
 
 g.append("path")
     .attr("d", arc)
-    .style("fill", function(d) { return colorscale(d.data.label)});
+    .style("fill", function(d) { return colorscale(d.data.label)})
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
 
 g.append("text")
     .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
