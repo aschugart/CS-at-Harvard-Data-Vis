@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,12 +83,32 @@
             and varying races), as well as data obtained from Harvard's School of Engineering and Applied Sciences
             (home of the computer science department).</p>
     </div>
-        <div class="box centered">
-        <div class="row">
-            <div class="col-md-4" id="chart-area"></div>
-            <div class="col-md-4" id="chart-area2"></div>
-            <div class="col-md-4" id="chart-area3"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <div id="chart-area"></div>
         </div>
+        <div class="col-md-4" id="chart-area2"></div>
+        <div class="col-md-4" id="chart-area3"></div>
     </div>
 </div>
 <div class="screen" id="perceptions">
@@ -159,43 +178,55 @@
             <div class="col-md-8 options">
                 <div class="col-md-4 gender_options">
                     <h4>Gender:</h4>
-                    <form action="">
+                    <form action="" id="gender2option" onchange="UpdateVisualization2()">
                         <div class="radio">
-                          <label><input type="radio" name="optradio">All</label>
+                          <label><input type="radio" name="gender2option" value="all_gender" checked="checked">All</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio">Male</label>
+                          <label><input type="radio" name="gender2option" value="1">Male</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio">Female</label>
+                          <label><input type="radio" name="gender2option" value="0">Female</label>
                         </div>
                     </form>
                 </div>
                 <div class="col-md-4 pcsb_options">
                     <h4>Prior CS Background:</h4>
-                    <form action="">
+                    <form action="" id="pcsb2option" onchange="UpdateVisualization2()">
                         <div class="radio">
-                          <label><input type="radio" name="optradio">All</label>
+                          <label><input type="radio" name="pcsb2option" value="all_pcsb" checked="checked">All</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio">Never taken CS at Harvard</label>
+                          <label><input type="radio" name="pcsb2option" value="0">Never taken CS at Harvard</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio">Taken a CS class and intending to concentrate in CS</label>
+                          <label><input type="radio" name="pcsb2option" value="2">Taken a CS class and intending to concentrate in CS</label>
                         </div>
                     </form>
                 </div>
                 <div class="col-md-4 race_options">
                     <h4>Race:</h4>
-                    <form action="">
+                    <form action="" id="race2option" onchange="UpdateVisualization2()">
                         <div class="radio">
-                          <label><input type="radio" name="optradio">All</label>
+                          <label><input type="radio" name="race2option" checked="checked" value="all_race">All</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio">___</label>
+                          <label><input type="radio" name="race2option" value="6">Native American or Alaskan Native</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="optradio">____</label>
+                          <label><input type="radio" name="race2option" value="1">Asian</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="race2option" value="3">Black or African American</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="race2option" value="2">Caucasian</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="race2option" value="4">Hispanic or Latino</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="race2option" value="5">Multiracial</label>
                         </div>
                     </form>
                 </div>
