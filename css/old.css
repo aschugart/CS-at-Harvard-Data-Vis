@@ -9,7 +9,10 @@
 /* FONT: Josefin Sans; */
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
 
-h2 {text-align: center; color: white; font-family: 'Josefin Sans'; font size: 32px;}
+.container h2 {text-align: center; color: white; font-family: 'Josefin Sans'; font size: 32px;}
+.centered-container h2 {text-align: center; color: white; font-family: 'Josefin Sans'; font size: 32px;}
+.description h2 {text-align: center; color: white; font-family: 'Josefin Sans'; font size: 32px;}
+
 h1 {font-family: 'Josefein Sans', sans-serif;}
 
 /*
@@ -165,8 +168,8 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 .time-box {
     align-content: center;
-    margin: 40px 270px 0 270px; width: auto;
-    background-color: rgba(0,0,0,0.4)
+    margin: 40px 270px 0 350px; width: auto;
+    background-color: rgba(0,0,0,0.2)
 }
 .time-box text, .time-box line { fill: white; }
 
