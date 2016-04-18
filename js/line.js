@@ -83,8 +83,8 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
-      .style("text-anchor", "end");
-      // .text("Temperature (ºF)");
+      .style("text-anchor", "end")
+      .text("Numbers");
 
   // circles
   // cities.forEach(function (d,i) {
