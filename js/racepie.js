@@ -27,6 +27,17 @@ console.log(radius);
 var colorscale = d3.scale.ordinal()
     .range(["#6633FF", "#CC33FF", "#33CC33", "#CCFF33", "#FF6600", "#FF0066"]);
 
+var tip = d3.tip()
+   .attr('class', 'd3-tip')
+   .offset([-10, 0]);
+
+svg.call(tip);
+
+tip
+   .html(function(d) {
+       return d.data.label+ " : " +  d.value;
+   });
+
 console.log(colorscale("Male"));
 console.log(colorscale("Female"));
 
@@ -50,7 +61,10 @@ var g = svg.selectAll(".arc")
 
 g.append("path")
     .attr("d", arc)
-    .style("fill", function(d) { return colorscale(d.data.label)});
+    .style("fill", function(d) { return colorscale(d.data.label)})
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
+;
 
 g.append("text")
     .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
