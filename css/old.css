@@ -28,7 +28,12 @@ h1 {font-family: 'Josefein Sans', sans-serif;}
     stroke: #000;
     shape-rendering: crispEdges;
 }
-
+g > text:hover {
+    stroke:blue;
+}
+g > text {
+    cursor:pointer;
+}
 .area { stroke-width: 0; fill: rgb(211, 94, 96); }
 
 .overlay {
@@ -42,6 +47,10 @@ h1 {font-family: 'Josefein Sans', sans-serif;}
     fill: steelblue;
     stroke: #555;
     stroke-width: 1;
+}
+
+.para_marg {
+    margin-top: 5%;
 }
 
 .focus text { font: 11px sans-serif; }
@@ -301,6 +310,7 @@ input[type=range]:focus { outline: 0; }
 .d3-tip {
     line-height: 1;
     font-weight: bold;
+    text-align: center;
     padding: 12px;
     background: rgba(0, 0, 0, 0.8);
     color: #fff;

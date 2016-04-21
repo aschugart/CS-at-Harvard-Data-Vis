@@ -59,7 +59,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
 
     tip
         .html(function(d) {
-
+            
             return d.name + " : " +  d.value + "%";
         });
 
@@ -93,6 +93,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
         .attr("height", function(d) { return height - y_prog(d.value); })
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
+        // .on('click', showPie)
         .style("fill", function(d) { return color(d.name); });
 
     var legend_prog_rating = svg_prog_rating.selectAll(".legend")
