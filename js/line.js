@@ -3,7 +3,7 @@
  */
 
 
-var margin = {top: 20, right: 80, bottom: 30, left: 50},
+var margin = {top: 100, right: 80, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -16,7 +16,8 @@ var y = d3.scale.linear()
     .range([height, 0]);
 
 var color = d3.scale.ordinal()
-    .range(["#00526B", "#8B3547", "7B9DA6"]);
+    //.range(["#A6D8DE", "#F9F1B5", "#7B9DA6"]);
+    .range(["#F9F1B5", "95c2c7", "7B9DA6"]);
 
 var xAxis = d3.svg.axis()
     .scale(x)

@@ -9,6 +9,12 @@
 /* FONT: Josefin Sans; */
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
 
+.container h2 {text-align: center; color: white; font-family: 'Josefin Sans'; font size: 32px;}
+.centered-container h2 {text-align: center; color: white; font-family: 'Josefin Sans'; font size: 32px;}
+.description h2 {text-align: center; color: white; font-family: 'Josefin Sans'; font size: 32px;}
+
+h1 {font-family: 'Josefein Sans', sans-serif;}
+
 /*
  *
  * D3 ELEMENTS
@@ -86,21 +92,21 @@ polyline {
  *
  */
 
-html, body {
+/*html, body {
     margin: 0;
     padding: 0;
     font-family: 'Hind', sans-serif;
     color: black;
-}
+}*/
 
 p {
     font-weight: 300 !important;
     line-height: 25px;
 }
 
-h1{ font-family: 'Josefin Sans', sans-serif;}
+/*h1{ font-family: 'Josefin Sans', sans-serif;}
 a, h1 a, h2 a, h3, h4 a { text-decoration: none;  color: #3B8FD7; font-family: 'Josefin Sans', sans-serif;}
-a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none; color: #53AFFF; }
+a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none; color: #FFFFFF; } */
 
 .highlighted { color: #3B8FD7; }
 
@@ -135,10 +141,10 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 #navbar { font-family: 'Hind', sans-serif; }
 #navbar.navbar-default { background-color: #000; }
 #navbar a { color: #ccc; }
-#navbar a:hover { color: #D70202; text-decoration: none; }
+#navbar a:hover { color: #A6D8DE; text-decoration: none; }
 #navbar .navbar-header { margin: 10px 0 0 25px; }
 #navbar .navbar-header a { color: white; font-weight: 100; font-size: 24px; }
-#navbar .navbar-header a:hover { color: #D70202;}
+#navbar .navbar-header a:hover { color: #A6D8DE;}
 #navbar .navbar-header a:focus { text-decoration: none; }
 #navbar .nav { margin: 0 0 0 25px; }
 
@@ -146,7 +152,7 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 /* HOME SCREEN */
 #home {
-    background: #7BCFDB;
+    background: #A6D8DE;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -162,15 +168,15 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 .time-box {
     align-content: center;
-    margin: 40px 270px 0 270px; width: auto;
-    background-color: rgba(0,0,0,0.4)
+    margin: 40px 270px 0 350px; width: auto;
+    background-color: rgba(0,0,0,0.2)
 }
 .time-box text, .time-box line { fill: white; }
 
 
 /* INTRO SCREEN */
 #intro { 
-    background: #6D696A; 
+    background: #AE9C96; 
 }
 #intro > .overlay {
     background-color: rgba(49,7,7,0.4);
@@ -187,15 +193,14 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
     z-index: 10;
 }
 
-/* PERCEPTIONS SCREEN */
 #perceptions {
-    background: #DAE2DF;
+    background: #FFFFFF;
 }
 
 
-/* BREAKDOWN SCREEN */
+/* PERCEPTIONS */
 #perceptions {
-    background: #8B3547;
+    background: #F9F1B5;
 }
 
 .left { width: 55%; float:left; }
@@ -232,9 +237,9 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 .perceptions.left, .perceptions.right { width: 50%; }
 
 
-/* EXECUTIONS SCREEN */
+/* DIVERSITY */
 #diversity {
-    background: #253939;
+    background: #DDDAD6;
     
 }
 
@@ -248,7 +253,7 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 input[type=range]{
     -webkit-appearance: none;
     height: 3px;
-    background: #7B7A7A;
+    background: #FFFFFF;
     border-radius: 5px;
 }
 
@@ -258,7 +263,7 @@ input[type=range]::-webkit-slider-thumb {
     height: 12px;
     width: 12px;
     border-radius: 50%;
-    background: #3B8FD7;
+    background: #FFFFFF;
     margin-top: -2px;
 }
 
@@ -272,29 +277,25 @@ input[type=range]:focus { outline: 0; }
 
 
 
-/* OFFENSES SCREEN */
+/* GROWTH */
 #growth {
-    background-size: 100%;
+    background: #A6D8DE;
 }
 
 .growth-box {
     width: 800px;
     text-align: left;
+    background-color: #FFFFFF;
 }
 
 #growth .axis path { stroke: white; }
 #growth text { fill: white; }
-#growth .overlay { position: absolute; background-color: rgba(0,0,0,0.6); }
 
-#growthContainer {
+#centered-container {
     width: 100%;
     text-align: center;
-}
+    background-color: #FFFFFF;
 
-#offenseVisGender,
-#offenseVisRace {
-    position: relative;
-    display: inline;
 }
 
 .d3-tip {
@@ -307,23 +308,9 @@ input[type=range]:focus { outline: 0; }
 }
 
 
-/* SEXUAL HARASSMENTS SCREEN */
-/*#harassments {background: url(../img/jail-cell.jpg) no-repeat center center;}
-#harassments .axis path { stroke: white; }
-#harassments text { fill: white; }
-#harassments .overlay { background-color: rgba(0,0,0,0.5); position: absolute; }
-
-#sexualHarassmentVis { color: white; }
-.sexual-harassment-box { text-align: left; }
-.hetero { fill: #CE0000 !important; font-weight: bold; letter-spacing: 1px; }
-.nonhetero { fill: #00BFFF !important; font-weight: bold; letter-spacing: 1px; }*/
-
-
-
-
 
 /* CREDITS SCREEN */
-#credits { height: 240px; background-color: #333; }
+#credits { height: 240px; background-color: #F9F1B5; }
 #credits-box { height: 240px; width: 100% !important; margin: 0; position: relative; }
 #credits-box .col-md-4 { height: 150px; }
 .small { font-size:12px; }

@@ -26,21 +26,16 @@ console.log(radius);
 
 var colorscale = d3.scale.ordinal()
     //.domain(["American Indian or Alaskan Native", "Asian", "Black or African American", "Caucasian", "Hispanic or Latino", "Other"])
-    .range(["#333", "#DAE2DF", "#33CC35", "#00526B", "#8B3547", "#48B0AC"]);
+    .range(["#333", "#DAE2DF", "#33CC35", "#A6D8DE", "#F9F1B5", "#48B0AC"]);
+
+console.log(colorscale("Male"));
+console.log(colorscale("Female"));
 
 var tip = d3.tip()
    .attr('class', 'd3-tip')
    .offset([-10, 0]);
 
 svg.call(tip);
-
-tip
-   .html(function(d) {
-       return d.data.label+ " : " +  d.value;
-   });
-
-console.log(colorscale("Male"));
-console.log(colorscale("Female"));
 
 var arc = d3.svg.arc()
     .outerRadius(radius - 10)
@@ -54,6 +49,11 @@ var pie = d3.layout.pie()
     .sort(null)
     .value(function(d, index) { return d.value});
 
+tip
+   .html(function(d) {
+       return d.data.label+ " : " +  d.value;
+   });
+
 var g = svg.selectAll(".arc")
     .data(pie(numbers))
 
@@ -65,7 +65,6 @@ g.append("path")
     .style("fill", function(d) { return colorscale(d.data.label)})
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
-;
 
 g.append("text")
     .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
