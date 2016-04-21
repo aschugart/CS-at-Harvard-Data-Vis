@@ -99,6 +99,12 @@ function UpdateVisualization() {
         .on("end", draw)
         .start();
 
+    // var wordcloud = svg_wordcloud1
+    //         // without the transform, words words would get cutoff to the left and top, they would
+    //         // appear outside of the SVG area
+    //         .attr("transform", "translate(200,200)");
+            
+
     function draw(words) {
         var wordcloud = svg_wordcloud1
             // without the transform, words words would get cutoff to the left and top, they would
@@ -107,13 +113,13 @@ function UpdateVisualization() {
             .selectAll("text")
             .data(words);
 
-        wordcloud.enter().append("text")
-            .style("font-size", function(d) {
+        wordcloud.enter().append("text");
+
+        wordcloud.style("font-size", function(d) {
                 return d.size + "px"; 
             })
             .style("fill", function(d, i) { return color2(i); })
-        
-        wordcloud.attr("transform", function(d) {
+            .attr("transform", function(d) {
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
             })
             .text(function(d) { return d.text; });
