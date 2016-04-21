@@ -113,64 +113,128 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
 function showPie(category, gender) {
   var radius = Math.min(width, height) / 2;
 
-  // Get the filtered numbers
+  var data;
+  loadData();
 
-  var numbers = [
-      {label: 'American Indian or Alaskan Native', value: 4},
-      {label: 'Asian', value: 322},
-      {label: 'Black or African American', value: 39},
-      {label: 'Caucasian', value: 372},
-      {label: 'Hispanic or Latino', value: 35},
-      {label: 'Other', value: 134}
-  ];
+  function loadData() {
+      d3.csv("data/linked_prog_pie.csv", function(error, csv) {
+          if (error) return console.warn(error);
+          data = csv;
 
-  var svg_prog_pie = d3.select("#prog_pie").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + width/2+ "," + height/2 + ")");
+          // data = data.forEach(function (d) {
+          //   d["years"] = +d["years"];
+          // });
+          
+          // Get the filtered csv
+          filteredData = data.filter(function (d) {
+            return (d["gender"] == gender) && (d["rating"] == category);
+          });
 
-  var colorscale = d3.scale.ordinal()
-      //.domain(["American Indian or Alaskan Native", "Asian", "Black or African American", "Caucasian", "Hispanic or Latino", "Other"])
-      .range(["#333", "#DAE2DF", "#33CC35", "#A6D8DE", "#F9F1B5", "#48B0AC"]);
+          console.log(filteredData);
 
-  var tip = d3.tip()
-     .attr('class', 'd3-tip')
-     .offset([-10, 0]);
+          // get the count for each "years" of programming
+          var years0, years1, years2, years3, years4, years5, years6,
+          years7, years8, years9, years10, years11;
 
-  svg_prog_pie.call(tip);
+          years0 = years1 = years2 = years3 = years4 = years5 = years6 = years7 = years8 = years9 = years10 = years11 = 0;
 
-  var arc = d3.svg.arc()
-      .outerRadius(radius - 10)
-      .innerRadius(0);
+          console.log(years0);
 
-  var arcText = d3.svg.arc()
-      .outerRadius(radius - 80)
-      .innerRadius(radius - 40);
+          filteredData.forEach(function (d) {
+            if (d.years == "0") {
+              years0++;
+            } else if (d.years == "1") {
+              years1++;
+            } else if (d.years == "2") {
+              years2++;
+            } else if (d.years == "3") {
+              years3++;
+            } else if (d.years == "4") {
+              years4++;
+            } else if (d.years == "5") {
+              years5++;
+            } else if (d.years == "6") {
+              years6++;
+            } else if (d.years == "7") {
+              years7++;
+            } else if (d.years == "8") {
+              years8++;
+            } else if (d.years == "9") {
+              years9++;
+            } else if (d.years == "10") {
+              years10++;
+            } else {
+              years11++;
+            }
+          });
 
-  var pie = d3.layout.pie()
-      .sort(null)
-      .value(function(d, index) { return d.value});
+          var numbers = [
+              {label: 'Less than a year', value: years0},
+              {label: '1 year', value: years1},
+              {label: '2 years', value: years2},
+              {label: '3 years', value: years3},
+              {label: '4 years', value: years4},
+              {label: '5 years', value: years5},
+              {label: '6 years', value: years6},
+              {label: '7 years', value: years7},
+              {label: '8 years', value: years8},
+              {label: '9 years', value: years9},
+              {label: '10 years', value: years10},
+              {label: '11 years', value: years11}
+          ];
 
-  tip
-     .html(function(d) {
-         return d.data.label+ " : " +  d.value;
-     });
+          console.log(years1);
 
-  var g = svg_prog_pie.selectAll(".arc")
-      .data(pie(numbers))
-      .enter().append("g")
-      .attr("class", "arc");
+          var svg_prog_pie = d3.select("#prog_pie").append("svg")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+              .attr("transform", "translate(" + width/2+ "," + height/2 + ")");
 
-  g.append("path")
-      .attr("d", arc)
-      .style("fill", function(d) { return colorscale(d.data.label)})
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
+          var colorscale = d3.scale.ordinal()
+              //.domain(["American Indian or Alaskan Native", "Asian", "Black or African American", "Caucasian", "Hispanic or Latino", "Other"])
+              .range(["#333", "#DAE2DF", "#33CC35", "#A6D8DE", "#F9F1B5", "#48B0AC"]);
 
-  g.append("text")
-      .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
-      .attr("dy", ".35em")
-      .text(function(d) {return d.data.label + ": " + d.data.value});
+          var tip = d3.tip()
+             .attr('class', 'd3-tip')
+             .offset([-10, 0]);
+
+          svg_prog_pie.call(tip);
+
+          var arc = d3.svg.arc()
+              .outerRadius(radius - 10)
+              .innerRadius(0);
+
+          var arcText = d3.svg.arc()
+              .outerRadius(radius - 80)
+              .innerRadius(radius - 40);
+
+          var pie = d3.layout.pie()
+              .sort(null)
+              .value(function(d, index) { return d.value});
+
+          tip
+             .html(function(d) {
+                 return d.data.label+ " : " +  d.value;
+             });
+
+          var g = svg_prog_pie.selectAll(".arc")
+              .data(pie(numbers))
+              .enter().append("g")
+              .attr("class", "arc");
+
+          g.append("path")
+              .attr("d", arc)
+              .style("fill", function(d) { return colorscale(d.data.label)})
+              .on('mouseover', tip.show)
+              .on('mouseout', tip.hide);
+
+          g.append("text")
+              .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
+              .attr("dy", ".35em")
+              .text(function(d) {return d.data.label + ": " + d.data.value});
+
+      });
+  };
 
 };
