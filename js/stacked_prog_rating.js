@@ -48,11 +48,8 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
   x_stack.domain(data.map(function(d) { return d.Rating; }));
   y_stack.domain([0, d3.max(data, function(d) { return d.total; })]);
 
-  console.log("bobcat");
-
   tip
     .html(function(d) {
-        console.log(d.name);
         return "Percentage of " + (d.gender).toLowerCase() + " in category " + d.name + ": " + "<br>" + (d.y1 - d.y0) + "%";
     });
 
@@ -85,7 +82,9 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
       .attr("height", function(d) { return y_stack(d.y0) - y_stack(d.y1); })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
-      .on('click', showPie(d., d.))
+      .on('click', function(d) {
+        return showPie(d.name, d.gender);
+      })
       .style("fill", function(d) { return color_stack(d.name); });
 
   svg_stacked_prog.call(tip);
@@ -111,10 +110,10 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
 
 });
 
-function showPie(thing1, thing2) {
+function showPie(category, gender) {
   var radius = Math.min(width, height) / 2;
 
-  // Get the filtered array
+  // Get the filtered numbers
 
   var numbers = [
       {label: 'American Indian or Alaskan Native', value: 4},
@@ -125,7 +124,7 @@ function showPie(thing1, thing2) {
       {label: 'Other', value: 134}
   ];
 
-  var svg = d3.select("#chart-area3").append("svg")
+  var svg_prog_pie = d3.select("#prog_pie").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -139,7 +138,7 @@ function showPie(thing1, thing2) {
      .attr('class', 'd3-tip')
      .offset([-10, 0]);
 
-  svg.call(tip);
+  svg_prog_pie.call(tip);
 
   var arc = d3.svg.arc()
       .outerRadius(radius - 10)
@@ -158,9 +157,8 @@ function showPie(thing1, thing2) {
          return d.data.label+ " : " +  d.value;
      });
 
-  var g = svg.selectAll(".arc")
+  var g = svg_prog_pie.selectAll(".arc")
       .data(pie(numbers))
-
       .enter().append("g")
       .attr("class", "arc");
 
