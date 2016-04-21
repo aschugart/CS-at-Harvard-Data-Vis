@@ -59,7 +59,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
 
     tip
         .html(function(d) {
-
+            
             return d.name + " : " +  d.value + "%";
         });
 
