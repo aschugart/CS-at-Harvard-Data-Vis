@@ -308,6 +308,22 @@
     <br>
         <center><div id="scatter"></div></center>
     </div>
+        <form class="form-inline">
+            <div class="form-group">
+                <br>
+                <label for="rankingType">Group by</label>
+                <select class="form-control" id="ranking-type" onchange="updateVisualization()">
+                    <option value="Faculty">Faculty</option>
+                    <option value="Students">Students</option>
+                    <option value="Ratio">Ratio</option>
+                </select>
+            </div>
+        </form>
+        <form>
+            <br> Time Period: <input id="start" type="number" class="form-control" name="year">
+                - <input id="end" type="number" name="year" class="form-control">
+            <button type='button' class="btn btn-default" onClick="updateVisualization()">Filter</button>
+        </form>
 </div>
 
 
@@ -334,6 +350,8 @@
 <script src="js/filtered_wordcloud2.js"></script>
 <script src="js/line.js"></script>
 <script src="js/scatter.js"></script>
+<script src="js/ratio_line.js"></script>
+
 </body>
 
 </html>
