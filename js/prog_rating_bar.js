@@ -2,7 +2,7 @@
  * Created by Alex on 09/04/2016.
  */
 
-var margin = {top: 100, right: 20, bottom: 30, left: 40},
+var margin = {top: 100, right: 20, bottom: 30, left: 10},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -59,7 +59,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
 
     tip
         .html(function(d) {
-
+            
             return d.name + " : " +  d.value + "%";
         });
 
@@ -93,6 +93,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
         .attr("height", function(d) { return height - y_prog(d.value); })
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
+        // .on('click', showPie)
         .style("fill", function(d) { return color(d.name); });
 
     var legend_prog_rating = svg_prog_rating.selectAll(".legend")
