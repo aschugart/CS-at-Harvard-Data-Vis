@@ -28,7 +28,7 @@ function loadData() {
 };
 
 // Default values for wordcloud1
-var selected1_gender = "all_gender";
+var selected1_gender = "0";
 var selected1_pcsb = "all_pcsb";
 var selected1_race = "all_race";
 
