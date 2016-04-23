@@ -85,6 +85,8 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
       .on('click', function(d) {
         return showPie(d.name, d.gender);
       })
+      .transition()
+      .duration(1000)
       .style("fill", function(d) { return color_stack(d.name); });
 
   svg_stacked_prog.call(tip);
