@@ -171,7 +171,7 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 /* HOME SCREEN */
 #home {
-    background: #A6D8DE;
+    background: #945b64;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -219,7 +219,7 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 /* PERCEPTIONS */
 #perceptions {
-    background: #F9F1B5;
+    background: #588ba3;
 }
 
 .left { width: 55%; float:left; }
@@ -292,7 +292,7 @@ input[type=range]:focus { outline: 0; }
 
 /* GROWTH */
 #growth {
-    background: #A6D8DE;
+    background: #754D54;
 }
 
 .growth-box {
@@ -342,7 +342,7 @@ input[type=range]:focus { outline: 0; }
 
 
 /* CREDITS SCREEN */
-#credits { height: 240px; background-color: #F9F1B5; }
+#credits { height: 240px; background-color: #3C454F; }
 #credits-box { height: 240px; width: 100% !important; margin: 0; position: relative; }
 #credits-box .col-md-4 { height: 150px; }
 .small { font-size:12px; }
