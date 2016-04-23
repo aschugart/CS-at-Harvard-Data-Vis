@@ -138,7 +138,8 @@ function UpdateVisualization() {
             })
             .text(function(d) { return d.text; })
             .on('mouseover', function(d) {
-                tip.select('.text').html("Word: " + d.text + "<br>Occurrences: " + d.size);
+                tip.select('.text').html("Word: " + d.text + "<br>Occurrences: " + d.size + " ("
+                 + ((d.size/(filteredData.length)) * 100).toFixed(2) + "%)");
                 tip.style('display', 'block');
             })
             .on('mouseout', function() {
