@@ -259,7 +259,7 @@
         <div class="box time-box"><h2>Growth of the CS Concentration</h2></div>
     <br>
     <br>
-
+<div class="col-md-8 linechart">
     <center><div class="container">
                 
 
@@ -276,11 +276,44 @@
                         </div>
 
             </table>
-          
-        </div></center>
+                  <center><div id="chart-area_line"></div></center>
+
+        </div></center></div>
+
+        <div class="col-md-4 lineinfo">
+        <h3 id="edition">Click on a circle for more information</h3>
+
+        <div class="table">
+            <table width="100%">
+                <tr>
+                    <td class="lefttab">Total Number of Students</td>
+                    <td id="totalstudents"></td>
+                </tr>
+                <tr>
+                    <td class="lefttab">Total Number of Minority Students</td>
+                    <td id="mstudents"></td>
+                </tr>
+                <tr>
+                    <td class="lefttab">Total Number of Female Students</td>
+                    <td id="fstudents"></td>
+                </tr>
+                <tr>
+                    <td class="lefttab">Total Number of Faculty</td>
+                    <td id="totalfaculty"></td>
+                </tr>
+                <tr>
+                    <td class="lefttab">Total Number of Minority Faculty</td>
+                    <td id="mfaculty"></td>
+                </tr>
+                <tr>
+                    <td class="lefttab">Total Number of Female Faculty</td>
+                    <td id="ffaculty"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
         <!-- Parent container for the visualization -->
-        <center><div id="chart-area_line"></div></center>
         <center><div id="chart-area_ratio"></div></center>
         <center><div id="line"></div></center>
 
@@ -312,6 +345,10 @@
 <script src="js/filtered_wordcloud2.js"></script>
 <script src="js/line.js"></script>
 <script src="js/ratio_line.js"></script>
+<script src="js/professors.js"></script>
+<script src="js/faculty.js"></script>
+
+
 <!--<script src="js/ratio.js"></script>-->
 
 

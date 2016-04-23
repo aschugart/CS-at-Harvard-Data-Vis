@@ -60,7 +60,7 @@ var formatDate = d3.time.format("%Y");
 
 // Load CSV file
 function loadData() {
-    d3.csv("data/ratioall.csv", function(error, csv) {
+    d3.csv("data/RatioNewData.csv", function(error, csv) {
 
         csv.forEach(function(d){
             // Convert string to 'date object'
@@ -102,7 +102,7 @@ var line_line = d3.svg.line().interpolate("monotone")
     .y(function (d) {return yScale_line(d[chartValue]);});
 
 // Draw initial line
-svg.selectAll('path').data([data_line]).enter().append('path').attr("class", "line path");
+svg.selectAll('.line-path').data([data_line]).enter().append('path').attr("class", "line path");
 
 
 
@@ -152,12 +152,14 @@ function updateVisualization() {
 
     var sel = document.getElementById('data-choice');
     y_text = sel.options[sel.selectedIndex].text;
+    var formatDate
 
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-15, 0])
         .html(function(f) {
-            return "<emph>"+y_text+":</emph> <span style='color:white'>" + 
+            return "<emph>"
+            +y_text+":</emph> <span style='color:white'>" + 
             d3.format(",")(f[chartValue]) + "</span>";
         });
 
@@ -177,7 +179,7 @@ function updateVisualization() {
 
     // Update
     circles
-        //.on("click", showEdition)
+        .on("click", showEdition)
         .style("opacity", 0.5)
         .transition()
         .duration(transitionDuration)
@@ -225,18 +227,17 @@ function updateVisualization() {
 
 
 //Show details for a specific FIFA World Cup
-// var showEdition = function(d){
-//  console.log(d);
-//  $("#edition").text(d.EDITION);
-//  $("#winner").text(d.WINNER);
-//  $("#goals").text(d.GOALS);
-//  $("#averagegoals").text(d.AVERAGE_GOALS);
-//  $("#matches").text(d.MATCHES);
-//  $("#teams").text(d.TEAMS);
-//  $("#averageattendance").text(d3.format(",")(d.AVERAGE_ATTENDANCE));
-//  d3.select(".selected").classed("selected", false);
-//  d3.select(this).classed("selected", true);
-// };
+var showEdition = function(d){
+ console.log(d);
+ $("#totalfaculty").text(d.Faculty);
+ $("#totalstudents").text(d.Students);
+ $("#mfaculty").text(d.FMinority);
+ $("#mstudents").text(d.SMinority);
+ $("#ffaculty").text(d.FWomen);
+ $("#fstudents").text(d.SWomen);
+ d3.select(".selected").classed("selected", false);
+ d3.select(this).classed("selected", true);
+};
 
 
 
