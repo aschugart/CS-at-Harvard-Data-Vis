@@ -28,12 +28,12 @@ h1 {font-family: 'Josefein Sans', sans-serif;}
     stroke: #000;
     shape-rendering: crispEdges;
 }
-g > text:hover {
+/*g > text:hover {
     stroke:blue;
-}
-g > text {
+}*/
+/*g > text {
     cursor:pointer;
-}
+}*/
 .area { stroke-width: 0; fill: rgb(211, 94, 96); }
 
 .overlay {
