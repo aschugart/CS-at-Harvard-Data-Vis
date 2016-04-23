@@ -21,6 +21,8 @@ h1 {font-family: 'Josefein Sans', sans-serif;}
  *
  */
 
+
+
 .axis text { font: 10px sans-serif; }
 .axis line,
 .axis path {
@@ -67,7 +69,7 @@ h1 {font-family: 'Josefein Sans', sans-serif;}
 }
 
 .arc text {
-    fill: white;
+    fill: black;
     font: 12px sans-serif;
 }
 
@@ -183,8 +185,10 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 .title-box h3 { font-weight: 100; font-size: 24px; }
 
 .time-box {
-    align-content: center;
-    margin: 40px 270px 0 350px; width: auto;
+    text-align: center;
+    margin: 40px 0px 0px 0px;
+    width: auto;
+    max-width: 640px;
     background-color: rgba(0,0,0,0.2)
 }
 .time-box text, .time-box line { fill: white; }
@@ -203,14 +207,12 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
     position: absolute;
     width: 600px;
     color: white;
-    margin: 10% auto 0;
+    margin: 5% auto 0;
+    margin-bottom: 20%;
     left: 0;
     right: 0;
     z-index: 10;
-}
-
-#perceptions {
-    background: #FFFFFF;
+    text-align: center;
 }
 
 
@@ -224,16 +226,12 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 .centered {
     margin: 20px auto;
     padding:10px;
-    position:relative !important;
+    position:relative;
     width:75% !important;
     text-align: center;
 }
 
 .wrapper { position: relative; }
-
-.map-box { margin-top: 25px; margin-right: 10px; height: 570px; }
-.map-box .wrapper { height: 75px; }
-#mapVis { margin-top:15%; }
 
 .cool-btns input {
     background-color: rgba(0,0,0,0.0);
@@ -245,8 +243,6 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
 
 .cool-btns input.active { color: #3B8FD7; border-color: #3B8FD7; }
 .cool-btns input:focus { outline: 0; }
-
-#state, .map-box .wrapper { display: none; }
 
 .perceptions { font-size: 13px; }
 .perceptions td { padding: 3px 15px 3px 0; }
@@ -331,3 +327,25 @@ input[type=range]:focus { outline: 0; }
 #credits-box { height: 240px; width: 100% !important; margin: 0; position: relative; }
 #credits-box .col-md-4 { height: 150px; }
 .small { font-size:12px; }
+
+/*Our CSS*/
+
+.introbox {
+    font-size: 16px;
+ }
+
+.pierow p {
+    margin-top: 100px;
+}
+
+#wordcloud1 {
+    margin-bottom: 5%;
+}
+
+#perceptions_head, #coding_head {
+    margin-bottom: 5%;
+}
+
+.options {
+    margin-bottom: 20px;
+}
