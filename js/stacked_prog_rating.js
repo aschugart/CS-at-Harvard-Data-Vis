@@ -208,7 +208,7 @@ function showPie(category, gender) {
               .innerRadius(0);
 
           var arcText = d3.svg.arc()
-              .outerRadius(radius - 80)
+              .outerRadius(radius + 35)
               .innerRadius(radius - 40);
 
           var pie = d3.layout.pie()
