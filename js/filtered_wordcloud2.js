@@ -10,7 +10,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
 var svg_wordcloud2 = d3.select("#wordcloud2").append("svg")
     .attr("width", width_wordcloud + margin.left + margin.right)
     .attr("height", height_wordcloud + margin.top + margin.bottom)
-    .attr("class", "wordcloud1")
+    .attr("class", "wordcloud2")
     .attr("style", "outline: thin solid black;")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -42,6 +42,14 @@ function UpdateVisualization2() {
     var gender_filter2;
     var pcsb_filter2;
     var race_filter2;
+
+    var tip = d3.select('#wordcloud2')
+    .append('div')
+    .attr('class', 'd3-tip-cloud')
+
+    tip.append('div')
+    .attr('class', 'text');
+
 
     gender_filter2 = data2.filter(function (d) {
         if (selected2_gender == "all_gender") {
@@ -116,7 +124,14 @@ function UpdateVisualization2() {
         wordcloud2.attr("transform", function(d) {
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
             })
-            .text(function(d) { return d.text; });
+            .text(function(d) { return d.text; })
+            .on('mouseover', function(d) {
+                tip.select('.text').html("Word: " + d.text + "<br>Occurrences: " + d.size);
+                tip.style('display', 'block');
+            })
+            .on('mouseout', function() {
+                tip.style('display', 'none');
+            });
 
         wordcloud2.exit().remove();
     }
