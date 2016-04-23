@@ -5,10 +5,6 @@
 
         <style>
 
-        body {
-          font: 10px sans-serif;
-        }
-
         .axis path,
         .axis line {
           fill: none;
@@ -30,8 +26,8 @@
     </style>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="css/old.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/old.css">   
 
     <title>Understanding the CS Experience at Harvard</title>
 </head>
@@ -61,15 +57,14 @@
                 <h1>Understanding the CS Experience at Harvard</h1>
                 <h3>By Alex Abrahams, Tommy O'Shea, and Annie Schugart</h3>
                 </div>
-            </div>
-        </center>
+            </center>
+        </div>   
         <center>
             <div class="box time-box">
-                <h2>Since 2008, the number of computer science concentrators at Harvard has quadrupled. </h2>
-                <p>Even more students are earning a secondary in computer science or simply exploring
-                the field through a computer science class. It's becoming increasingly apparent: the computer science department is rapidly growing. But along with
-                this academic growth comes a growing concern about the gender and racial gap within computer science.</p>
-                <div id="timeVis"></div>
+                <h2>Since 2008, the number of computer science concentrators at Harvard has quadrupled.</h2>
+                <p class="introbox">More Harvard students than ever are getting a secondary in CS or 
+                    just exploring the field by taking a class. We have set out to visualize the CS experience at Harvard, breaking the data down by gender, race
+                    and background. We have also tried to show the changes that have been occurring on the faculty side. </p>
             </div>
         </center>
     </div>
@@ -77,11 +72,11 @@
 
 <div class="screen" id="intro">
     <div class="description">
-        <h2>With a sample size of over 900, we're exploring the opinions about the computer science experience at Harvard. </h2>
-        <p>We're basing our analysis on data from the Women in Computer Science's survey, which obtained responses
+        <h2>We have drawn on a survey of over 900 Harvard undergraduates to understand how
+            Computer Science is viewed and experienced here.</h2>
+        <p>Unless stated otherwise, our data comes from the Harvard Women in Computer Science's survey, which obtained responses
         from a wide range of Harvard students (both computer science concentrators and non-concentrators, men and women,
-            and varying races), as well as data obtained from Harvard's School of Engineering and Applied Sciences
-            (home of the computer science department).</p>
+            and varying races). The pie charts below show the distribution of survey respondents.</p>
     </div>
     <br>
     <br>
@@ -101,32 +96,33 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-md-4">
-            <div id="chart-area"></div>
+    <div class="pie_row">
+        <div class="row">
+            <div class="col-md-4" id="chart-area"></div>
+            <div class="col-md-4" id="chart-area2"></div>
+            <div class="col-md-4" id="chart-area3"></div>
         </div>
-        <div class="col-md-4" id="chart-area2"></div>
-        <div class="col-md-4" id="chart-area3"></div>
     </div>
 </div>
+
 <div class="screen" id="perceptions">
     <div class="centered-container">
-        <div class="box time-box">
-        <h2>Perceptions of CS</h2>
-    </div>
+        <center>
+            <div class="box time-box" id="perceptions_head">
+                <h2>Perceptions of CS</h2>
+            </div>
+        </center>
         <div class="left">
-            <div id="wordcloud1" class='map'></div>
+            <div id="wordcloud1"></div>
             <div class="col-md-8 options">
                 <div class="col-md-4 gender_options">
                     <h4>Gender:</h4>
                     <form action="" id="gender1option" onchange="UpdateVisualization()">
                         <div class="radio">
-                          <label><input type="radio" name="gender1option" value="all_gender" checked="checked">All</label>
+                          <label><input type="radio" name="gender1option" value="all_gender">All</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="gender1option" value="1">Male</label>
+                          <label><input type="radio" name="gender1option" value="1" checked="checked">Male</label>
                         </div>
                         <div class="radio">
                           <label><input type="radio" name="gender1option" value="0">Female</label>
@@ -182,13 +178,13 @@
                     <h4>Gender:</h4>
                     <form action="" id="gender2option" onchange="UpdateVisualization2()">
                         <div class="radio">
-                          <label><input type="radio" name="gender2option" value="all_gender" checked="checked">All</label>
+                          <label><input type="radio" name="gender2option" value="all_gender">All</label>
                         </div>
                         <div class="radio">
                           <label><input type="radio" name="gender2option" value="1">Male</label>
                         </div>
                         <div class="radio">
-                          <label><input type="radio" name="gender2option" value="0">Female</label>
+                          <label><input type="radio" name="gender2option" value="0" checked="checked">Female</label>
                         </div>
                     </form>
                 </div>
@@ -239,9 +235,11 @@
 </div>
 <div class="screen" id="diversity">
     <div class="container">
-        <div class="box time-box">
-            <h2>Coding Confidence Between Genders</h2>
-        </div>
+        <center>
+            <div class="box time-box">
+                <h2 id="coding_head">Coding Confidence Between Genders</h2>
+            </div>
+        </center>
         <div>
             <p class="para_marg">We asked respondents who said that they had taken a CS class at Harvard
                 and were intending to concentrate in CS how good they thought they were at programming compared to their peers in their CS classes. 5 is much better, and 1 is much worse.</p>
