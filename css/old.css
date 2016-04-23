@@ -321,6 +321,24 @@ input[type=range]:focus { outline: 0; }
     border-radius: 2px;
 }
 
+.d3-tip-cloud {
+    line-height: 1;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    background: #eee;
+    color: #333;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #999999;
+    display: none;
+    font-size: 14px;
+    left: 150px;
+    position: absolute;
+    top: 305px;
+    width: 200px;
+    height: 40px;
+}
+
 
 
 /* CREDITS SCREEN */
@@ -341,6 +359,12 @@ input[type=range]:focus { outline: 0; }
 
 #wordcloud1 {
     margin-bottom: 5%;
+    position: relative;
+}
+
+#wordcloud2 {
+    margin-bottom: 5%;
+    position: relative;
 }
 
 #perceptions_head, #coding_head {

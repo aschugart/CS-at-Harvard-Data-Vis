@@ -1,7 +1,7 @@
 /**
  * Created by Thomas on 4/12/2016.
  */
-var margin = {top: 40, right: 40, bottom: 60, left: 60};
+var margin = {top: 80, right: 40, bottom: 60, left: 60};
 
 var width = 500,
     height = 300,
@@ -42,7 +42,7 @@ var arc = d3.svg.arc()
     .innerRadius(0);
 
 var arcText = d3.svg.arc()
-    .outerRadius(radius - 80)
+    .outerRadius(radius + 30)
     .innerRadius(radius - 40);
 
 var pie = d3.layout.pie()
@@ -69,4 +69,12 @@ g.append("path")
 g.append("text")
     .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
     .attr("dy", ".35em")
+    .style("text-anchor", function (d) {
+        console.log(d.label);
+        if (d.data.label == "Hispanic or Latino" || d.data.label == "Other" || d.data.label == "Caucasian") {
+            return "end";
+        } else {
+            return "start";
+        }
+    })
     .text(function(d) {return d.data.label + ": " + d.data.value});

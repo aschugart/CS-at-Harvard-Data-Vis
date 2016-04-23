@@ -43,6 +43,13 @@ function UpdateVisualization() {
     selected1_pcsb = d3.select('input[name="pcsb1option"]:checked').node().value
     selected1_race = d3.select('input[name="race1option"]:checked').node().value
 
+    var tip = d3.select('#wordcloud1')
+    .append('div')
+    .attr('class', 'd3-tip-cloud')
+
+   tip.append('div')
+    .attr('class', 'text');
+
     // filter the array
     var gender_filter;
     var pcsb_filter;
@@ -104,6 +111,8 @@ function UpdateVisualization() {
         .on("end", draw)
         .start();
 
+
+
     // var wordcloud = svg_wordcloud1
     //         // without the transform, words words would get cutoff to the left and top, they would
     //         // appear outside of the SVG area
@@ -120,10 +129,6 @@ function UpdateVisualization() {
 
         wordcloud.enter().append("text");
 
-        // wordcloud.on("mousemove", function() {
-        // fisheye.focus(d3.mouse(this));
-        // });
-
         wordcloud.style("font-size", function(d) {
                 return d.size + "px"; 
             })
@@ -131,12 +136,14 @@ function UpdateVisualization() {
             .attr("transform", function(d) {
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
             })
-            .text(function(d) { return d.text; });
-
-        // wordcloud.each(function(d) {d.fisheye = fisheye(d); })
-        //     .attr("transform", function(d) {
-        //         return "translate(" + [d.fisheye.x, d.fisheye.y] + ")rotate(" + d.rotate + ")";
-        //     })
+            .text(function(d) { return d.text; })
+            .on('mouseover', function(d) {
+                tip.select('.text').html("Word: " + d.text + "<br>Occurrences: " + d.size);
+                tip.style('display', 'block');
+            })
+            .on('mouseout', function() {
+                tip.style('display', 'none');
+            });
 
         wordcloud.exit().remove();
     }

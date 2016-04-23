@@ -4,7 +4,7 @@
 
 
 var margin = {top: 100, right: 80, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
+    width = 600 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%Y").parse;
@@ -38,7 +38,7 @@ var svg_line_graph = d3.select("#line").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("data/wrangledundergrads.csv", function(error, data) {
+d3.csv("data/faculty.csv", function(error, data) {
   if (error) throw error;
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "AcademicYear"; }));
@@ -145,57 +145,57 @@ d3.csv("data/wrangledundergrads.csv", function(error, data) {
        .attr("dy", ".35em")
        .text(function(d) { return d.name; });
 
-});
+ });
 
-function updateData() {
+// function updateData() {
 
-  d3.csv("data/faculty.csv", function(error, data) {
-  if (error) throw error;
+//   d3.csv("data/faculty.csv", function(error, data) {
+//   if (error) throw error;
 
-  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "AcademicYear"; }));
+//   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "AcademicYear"; }));
 
-  console.log(color.domain);
+//   console.log(color.domain);
 
-  data.forEach(function(d) {
-    d["AcademicYear"] = parseDate(d["AcademicYear"]);
-  });
+//   data.forEach(function(d) {
+//     d["AcademicYear"] = parseDate(d["AcademicYear"]);
+//   });
 
-  var cities = color.domain().map(function(name) {
-    return {
-      name: name,
-      values: data.map(function(d) {
-        return {date: d["AcademicYear"], number: +d[name]};
-      })
-    };
-  });
+//   var cities = color.domain().map(function(name) {
+//     return {
+//       name: name,
+//       values: data.map(function(d) {
+//         return {date: d["AcademicYear"], number: +d[name]};
+//       })
+//     };
+//   });
 
-  // console.log("Cities: ");
-  // console.log(cities);
+//   // console.log("Cities: ");
+//   // console.log(cities);
 
-  x.domain(d3.extent(data, function(d) { return d["AcademicYear"]; }));
+//   x.domain(d3.extent(data, function(d) { return d["AcademicYear"]; }));
 
-  y.domain([
-    d3.min(cities, function(c) { 
-      return d3.min(c.values, function(v) { 
-        return v.number; 
-      }); 
-    }),
-    d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.number; }); })
-  ]);
+//   y.domain([
+//     d3.min(cities, function(c) { 
+//       return d3.min(c.values, function(v) { 
+//         return v.number; 
+//       }); 
+//     }),
+//     d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.number; }); })
+//   ]);
 
-    // Select the section we want to apply our changes to
-    var svg = d3.select("#line").transition();
+//     // Select the section we want to apply our changes to
+//     var svg = d3.select("#line").transition();
 
-    // Make the changes
-        svg.select(".line")   // change the line
-            .duration(750)
-            .attr("d", valueline(data));
-        svg.select(".x.axis") // change the x axis
-            .duration(750)
-            .call(xAxis);
-        svg.select(".y.axis") // change the y axis
-            .duration(750)
-            .call(yAxis);
+//     // Make the changes
+//         svg.select(".line")   // change the line
+//             .duration(750)
+//             .attr("d", valueline(data));
+//         svg.select(".x.axis") // change the x axis
+//             .duration(750)
+//             .call(xAxis);
+//         svg.select(".y.axis") // change the y axis
+//             .duration(750)
+//             .call(yAxis);
 
-    });
-  }
+//     });
+//   }
