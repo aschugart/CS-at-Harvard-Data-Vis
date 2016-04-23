@@ -1,14 +1,14 @@
-var marginf = {top: 100, right: 80, bottom: 30, left: 50},
-    widthf = 600 - marginf.left - marginf.right,
-    heightf = 500 - marginf.top - marginf.bottom;
+var margin = {top: 100, right: 80, bottom: 30, left: 50},
+    width = 600 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 var parseDatef = d3.time.format("%Y").parse;
 
 var xf = d3.time.scale()
-    .range([0, widthf]);
+    .range([0, width]);
 
 var yf = d3.scale.linear()
-    .range([heightf, 0]);
+    .range([height, 0]);
 
 var colorf = d3.scale.ordinal()
     //.range(["#A6D8DE", "#F9F1B5", "#7B9DA6"]);
@@ -24,55 +24,55 @@ var yAxisf = d3.svg.axis()
 
 var linef = d3.svg.line()
     .interpolate("linear")
-    .x(function(d) { return xf(d.datef); })
-    .y(function(d) { return yf(d.numberf); });
+    .x(function(d) { return xf(d.date); })
+    .y(function(d) { return yf(d.number); });
 
-var svg_fac = d3.select("#line2").append("svg")
-    .attr("width", widthf + marginf.left + marginf.right)
-    .attr("height", heightf + marginf.top + marginf.bottom)
+var svg_line_graphf = d3.select("#line2").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", "translate(" + marginf.left + "," + marginf.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("data/wrangledundergrads.csv", function(error, dataf) {
+d3.csv("data/faculty.csv", function(error, data) {
   if (error) throw error;
 
-  colorf.domain(d3.keys(dataf[0]).filter(function(key) { return key !== "AcademicYear"; }));
+  colorf.domain(d3.keys(data[0]).filter(function(keyf) { return keyf !== "AcademicYear"; }));
 
-  console.log(color.domain);
-
-  dataf.forEach(function(d) {
-    d["AcademicYear"] = parseDate(d["AcademicYear"]);
+  data.forEach(function(d) {
+    d["AcademicYear"] = parseDatef(d["AcademicYear"]);
   });
 
   var citiesf = colorf.domain().map(function(name) {
     return {
-      namef: name,
-      valuesf: dataf.map(function(d) {
-        return {date: d["AcademicYear"], numberf: +d[name]};
+      name: name,
+      values: data.map(function(d) {
+        return {date: d["AcademicYear"], number: +d[name]};
       })
     };
   });
 
+  console.log(citiesf);
+
   // console.log("Cities: ");
   // console.log(cities);
 
-  xf.domain(d3.extent(dataf, function(d) { return d["AcademicYear"]; }));
+  xf.domain(d3.extent(data, function(d) { return d["AcademicYear"]; }));
 
   yf.domain([
     d3.min(citiesf, function(c) { 
-      return d3.min(c.valuesf, function(v) { 
-        return v.numberf; 
+      return d3.min(c.values, function(v) { 
+        return v.number; 
       }); 
     }),
-    d3.max(citiesf, function(c) { return d3.max(c.valuesf, function(v) { return v.numberf; }); })
+    d3.max(citiesf, function(c) { return d3.max(c.values, function(v) { return v.number; }); })
   ]);
 
-  svg_fac.append("g")
+  svg_line_graphf.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxisf);
 
-  svg_fac.append("g")
+  svg_line_graphf.append("g")
       .attr("class", "y axis")
       .call(yAxisf)
     .append("text")
@@ -82,20 +82,58 @@ d3.csv("data/wrangledundergrads.csv", function(error, dataf) {
       .style("text-anchor", "end")
       .text("Numbers");
 
-  var cityf = svg_line_graph.selectAll(".city")
+  // circles
+  // cities.forEach(function (d,i) {
+  //   var circles = svg.selectAll(".circle-group-"+i)
+  //     .data(d.values);
+
+  //   circles.enter().append("circle")
+
+  // })
+
+  // var circlegroups = svg.selectAll(".circle-group")
+  //   .data(cities);
+
+  // // Data enter
+  // circlegroups.enter().append("g");
+
+  // var circle = circlegroups.selectAll('circle')
+  //   .data(function (d) { return d.values; });
+
+  // // data update for circle
+  // circle
+  //   .transition(3000)
+  //   .duration(800)
+  //   .attr("cx", function(d) {
+  //     return x(d.date);
+  //   })
+  //   .attr("cy", function(d) {
+  //     return y(d.number);
+  //   })
+  //   .attr("r", 8)
+  //   .attr("fill", "steelblue");
+
+  // circle
+  //   .on('mouseover', tip.show)
+  //   .on('mouseout', tip.hide);
+
+  // // Data exit
+  // circle.exit().remove();
+
+  var cityf = svg_line_graphf.selectAll(".cityf")
       .data(citiesf)
     .enter().append("g")
       .attr("class", "cityf");
 
   cityf.append("path")
       .attr("class", "linef")
-      .attr("d", function(d) { 
-        console.log(d.valuesf);
-        return linef(d.valuesf); 
+      .attr("d", function(d) {
+        console.log(d.values);
+        return linef(d.values); 
       })
-      .style("stroke", function(d) { return color(d.namef); });
+      .style("stroke", function(d) { return colorf(d.name); });
       
-  cityf.append("textf")
+  cityf.append("text")
        .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
        .attr("transform", function(d) { return "translate(" + xf(d.value.date) + "," + yf(d.value.number) + ")"; })
        .attr("x", 3)

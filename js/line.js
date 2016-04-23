@@ -38,7 +38,7 @@ var svg_line_graph = d3.select("#line").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("data/faculty.csv", function(error, data) {
+d3.csv("data/wrangledundergrads.csv", function(error, data) {
   if (error) throw error;
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "AcademicYear"; }));
