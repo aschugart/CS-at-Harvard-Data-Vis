@@ -25,8 +25,7 @@ var svg = d3.select("#chart-area3").append("svg")
 console.log(radius);
 
 var colorscale = d3.scale.ordinal()
-    //.domain(["American Indian or Alaskan Native", "Asian", "Black or African American", "Caucasian", "Hispanic or Latino", "Other"])
-    .range(["#333", "#DAE2DF", "#33CC35", "#A6D8DE", "#F9F1B5", "#48B0AC"]);
+    .range(["#A8BA95", "#B5A2A8", "#AA6C64", "#560000", "#DEA27A", "#1C5672"]);
 
 console.log(colorscale("Male"));
 console.log(colorscale("Female"));

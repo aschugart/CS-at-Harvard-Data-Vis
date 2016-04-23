@@ -22,7 +22,7 @@ var svg = d3.select("#chart-area").append("svg")
 console.log(radius);
 
 var colorscale = d3.scale.ordinal()
-    .range(["#A6D8DE", "#F9F1B5"]);
+    .range(["#1C5672", "#560000"]);
 
 console.log(colorscale("Male"));
 console.log(colorscale("Female"));
