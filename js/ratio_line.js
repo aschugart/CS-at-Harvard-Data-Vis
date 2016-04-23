@@ -69,6 +69,7 @@ function loadData() {
             // Convert numeric values to 'numbers'
             d.Students = +d.Students;
             d.Faculty = +d.Faculty;
+            d.Ratio = +d.Ratio;
         });
 
         // Store csv data in global variable
