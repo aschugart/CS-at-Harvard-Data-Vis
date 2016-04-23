@@ -83,7 +83,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
       .on('click', function(d) {
-        return changePie(d.name, d.gender);
+        return showPie(d.name, d.gender);
       })
       .transition()
       .duration(1000)
@@ -112,51 +112,8 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
 
 });
 
-// DEFAULT PIE CHART
-
-var default_dataset = {
-  apples: [53245, 28479, 19697, 24037, 40245],
-  oranges: [200, 200, 200, 200] // previously 5 values, now only 4
-};
-
-var radius = Math.min(width, height) / 2;
-
-var enterAntiClockwise = {
-  startAngle: Math.PI * 2,
-  endAngle: Math.PI * 2
-};
-
-var colorscale = d3.scale.category20();
-
-var pie = d3.layout.pie()
-  .sort(null);
-
-var arc = d3.svg.arc()
-  .outerRadius(radius - 10)
-  .innerRadius(0);
-
-var svg_prog_pie = d3.select("#prog_pie").append("svg")
-  .attr("width", width_stack)
-  .attr("height", height)
-  .append("g")
-  .attr("transform", "translate(" + width_stack / 2 + "," + height / 2 + ")");
-
-var path = svg_prog_pie.selectAll("path")
-  .data(pie(default_dataset.apples))
-  .enter().append("path")
-  .attr("fill", function(d, i) { return colorscale(i); })
-  .attr("d", arc)
-  .each(function(d) { this._current = d; }); // store the initial values
-
-// d3.selectAll("input").on("change", change);
-
-var timeout = setTimeout(function() {
-  d3.select("input[value=\"oranges\"]").property("checked", true).each(changePie);
-}, 2000);
-
-
-function changePie(category, gender) {
-  // var radius = Math.min(width, height) / 2;
+function showPie(category, gender) {
+  var radius = Math.min(width, height) / 2;
 
   var data;
   loadData();
@@ -165,19 +122,25 @@ function changePie(category, gender) {
       d3.csv("data/linked_prog_pie.csv", function(error, csv) {
           if (error) return console.warn(error);
           data = csv;
+
+          // data = data.forEach(function (d) {
+          //   d["years"] = +d["years"];
+          // });
           
           // Get the filtered csv
           filteredData = data.filter(function (d) {
             return (d["gender"] == gender) && (d["rating"] == category);
           });
 
+          console.log(filteredData);
+
           // get the count for each "years" of programming
-          // var years0, years1, years2, years3, years4, years5, years6,
-          // years7, years8, years9, years10, years11;
+          var years0, years1, years2, years3, years4, years5, years6,
+          years7, years8, years9, years10, years11;
 
-          var years0, years1, years2, years35, years68, years9;
+          years0 = years1 = years2 = years3 = years4 = years5 = years6 = years7 = years8 = years9 = years10 = years11 = 0;
 
-          years0 = years1 = years2 = years35 = years68 = years9 = 0;
+          console.log(years0);
 
           filteredData.forEach(function (d) {
             if (d.years == "0") {
@@ -187,23 +150,23 @@ function changePie(category, gender) {
             } else if (d.years == "2") {
               years2++;
             } else if (d.years == "3") {
-              years35++;
+              years3++;
             } else if (d.years == "4") {
-              years35++;
+              years4++;
             } else if (d.years == "5") {
-              years35++;
+              years5++;
             } else if (d.years == "6") {
-              years68++;
+              years6++;
             } else if (d.years == "7") {
-              years68++;
+              years7++;
             } else if (d.years == "8") {
-              years68++;
+              years8++;
             } else if (d.years == "9") {
               years9++;
             } else if (d.years == "10") {
-              years9++;
+              years10++;
             } else {
-              years9++;
+              years11++;
             }
           });
 
@@ -211,212 +174,71 @@ function changePie(category, gender) {
               {label: 'Less than a year', value: years0},
               {label: '1 year', value: years1},
               {label: '2 years', value: years2},
-              {label: '3 to 5 years', value: years35},
-              {label: '6 to 8 years', value: years68},
-              {label: '9+ years', value: years9}
+              {label: '3 years', value: years3},
+              {label: '4 years', value: years4},
+              {label: '5 years', value: years5},
+              {label: '6 years', value: years6},
+              {label: '7 years', value: years7},
+              {label: '8 years', value: years8},
+              {label: '9 years', value: years9},
+              {label: '10 years', value: years10},
+              {label: '11 years', value: years11}
           ];
 
-          // var svg_prog_pie = d3.select("#prog_pie").append("svg")
-          //     .attr("width", width + margin.left + margin.right)
-          //     .attr("height", height + margin.top + margin.bottom)
-          //     .append("g")
-          //     .attr("transform", "translate(" + width/2+ "," + height/2 + ")");
+          console.log(years1);
 
-          var key = function(d){ return d.data.label; };
+          var svg_prog_pie = d3.select("#prog_pie").append("svg")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+              .attr("transform", "translate(" + width/2+ "," + height/2 + ")");
 
-          clearTimeout(timeout);
-          path = path.data(pie(numbers)); // update the data
-          // set the start and end angles to Math.PI * 2 so we can transition
-          // anticlockwise to the actual values later
-          path.enter().append("path")
-              .attr("fill", function (d, i) {
-                return color(i);
-              })
-              .attr("d", arc(enterAntiClockwise))
-              .each(function (d) {
-                this._current = {
-                  data: d.data,
-                  value: d.value,
-                  startAngle: enterAntiClockwise.startAngle,
-                  endAngle: enterAntiClockwise.endAngle
-                };
-              }); // store the initial values
+          var colorscale = d3.scale.ordinal()
+              //.domain(["American Indian or Alaskan Native", "Asian", "Black or African American", "Caucasian", "Hispanic or Latino", "Other"])
+              .range(["#333", "#DAE2DF", "#33CC35", "#A6D8DE", "#F9F1B5", "#48B0AC"]);
 
-          path.exit()
-              .transition()
-              .duration(750)
-              .attrTween('d', arcTweenOut)
-              .remove() // now remove the exiting arcs
+          var tip = d3.tip()
+             .attr('class', 'd3-tip')
+             .offset([-10, 0]);
 
-          path.transition().duration(750).attrTween("d", arcTween); // redraw the arcs
-        
+          svg_prog_pie.call(tip);
 
-        // Store the displayed angles in _current.
-        // Then, interpolate from _current to the new angles.
-        // During the transition, _current is updated in-place by d3.interpolate.
-        function arcTween(a) {
-          var i = d3.interpolate(this._current, a);
-          this._current = i(0);
-          return function(t) {
-          return arc(i(t));
-          };
-        }
-        // Interpolate exiting arcs start and end angles to Math.PI * 2
-        // so that they 'exit' at the end of the data
-        function arcTweenOut(a) {
-          var i = d3.interpolate(this._current, {startAngle: Math.PI * 2, endAngle: Math.PI * 2, value: 0});
-          this._current = i(0);
-          return function (t) {
-            return arc(i(t));
-          };
-        }
+          var arc = d3.svg.arc()
+              .outerRadius(radius - 10)
+              .innerRadius(0);
 
-          // svg_prog_pie.append("g")
-          //     .attr("class", "slices");
-          // svg_prog_pie.append("g")
-          //     .attr("class", "labels");
-          // svg_prog_pie.append("g")
-          //     .attr("class", "lines");
+          var arcText = d3.svg.arc()
+              .outerRadius(radius - 80)
+              .innerRadius(radius - 40);
 
-          // var colorscale = d3.scale.ordinal()
-          //     .range(["#333", "#DAE2DF", "#33CC35", "#A6D8DE", "#F9F1B5", "#48B0AC"]);
+          var pie = d3.layout.pie()
+              .sort(null)
+              .value(function(d, index) { return d.value});
 
-          // var tip = d3.tip()
-          //    .attr('class', 'd3-tip')
-          //    .offset([-10, 0]);
+          tip
+             .html(function(d) {
+                 return d.data.label+ " : " +  d.value;
+             });
 
-          // svg_prog_pie.call(tip);
+          var g = svg_prog_pie.selectAll(".arc")
+              .data(pie(numbers))
+              .enter().append("g")
+              .attr("class", "arc");
 
-          // var arc = d3.svg.arc()
-          //     .outerRadius(radius - 10)
-          //     .innerRadius(0);
+          g.append("path")
+              .attr("d", arc)
+              .style("fill", function(d) { return colorscale(d.data.label)})
+              .on('mouseover', tip.show)
+              .on('mouseout', tip.hide);
 
-          // var arcText = d3.svg.arc()
-          //     .outerRadius(radius - 80)
-          //     .innerRadius(radius - 40);
-
-          // var pie = d3.layout.pie()
-          //     .sort(null)
-          //     .value(function(d, index) { return d.value});
-
-          // tip
-          //    .html(function(d) {
-          //        return d.data.label+ " : " +  d.value;
-          //    });
-
-          // /* ------- PIE SLICES -------*/
-          // var slice = svg_prog_pie.select(".slices").selectAll("path.slice")
-          //     .data(pie(numbers), key);
-
-          // console.log("hey there");
-          // console.log(slice);
-
-          // slice.enter()
-          //     .insert("path")
-          //     .style("fill", function(d) { return colorscale(d.data.label); })
-          //     .attr("class", "slice");
-
-          // slice       
-          //     .transition().duration(1000)
-          //     .attrTween("d", function(d) {
-          //         this._current = this._current || d;
-          //         var interpolate = d3.interpolate(this._current, d);
-          //         this._current = interpolate(0);
-          //         return function(t) {
-          //             return arc(interpolate(t));
-          //         };
-          //     })
-
-          // slice.exit()
-          //     .remove();
-
-          // console.log(slice);
-
-          /* ------- TEXT LABELS -------*/
-
-          // var text_prog_pie = svg_prog_pie.select(".labels").selectAll("text")
-          //     .data(pie(numbers), key);
-
-          // text_prog_pie.enter()
-          //     .append("text")
-          //     .attr("dy", ".35em")
-          //     .text(function(d) {
-          //         return d.data.label;
-          //     });
-          
-          // function midAngle(d){
-          //     return d.startAngle + (d.endAngle - d.startAngle)/2;
-          // }
-
-          // text_prog_pie.transition().duration(1000)
-          //     .attrTween("transform", function(d) {
-          //         this._current = this._current || d;
-          //         var interpolate = d3.interpolate(this._current, d);
-          //         this._current = interpolate(0);
-          //         return function(t) {
-          //             var d2 = interpolate(t);
-          //             var pos = outerArc.centroid(d2);
-          //             pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-          //             return "translate("+ pos +")";
-          //         };
-          //     })
-          //     .styleTween("text-anchor", function(d){
-          //         this._current = this._current || d;
-          //         var interpolate = d3.interpolate(this._current, d);
-          //         this._current = interpolate(0);
-          //         return function(t) {
-          //             var d2 = interpolate(t);
-          //             return midAngle(d2) < Math.PI ? "start":"end";
-          //         };
-          //     });
-
-          // text_prog_pie.exit()
-          //     .remove();
-
-          /* ------- SLICE TO TEXT POLYLINES -------*/
-
-          // var polyline = svg.select(".lines").selectAll("polyline")
-          //     .data(pie(data));
-          
-          // polyline.enter()
-          //     .append("polyline");
-
-          // polyline.transition().duration(1000)
-          //     .attrTween("points", function(d){
-          //         this._current = this._current || d;
-          //         var interpolate = d3.interpolate(this._current, d);
-          //         this._current = interpolate(0);
-          //         return function(t) {
-          //             var d2 = interpolate(t);
-          //             var pos = outerArc.centroid(d2);
-          //             pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
-          //             return [arc.centroid(d2), outerArc.centroid(d2), pos];
-          //         };          
-          //     });
-          
-          // polyline.exit()
-          //     .remove();
-
-          // var g = svg_prog_pie.selectAll(".arc")
-          //     .data(pie(numbers))
-          //     .enter().append("g")
-          //     .attr("class", "arc");
-
-          // g.append("path")
-          //     .attr("d", arc)
-          //     .style("fill", function(d) { return colorscale(d.data.label)})
-          //     .on('mouseover', tip.show)
-          //     .on('mouseout', tip.hide);
-
-          // g.append("text")
-          //     .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
-          //     .attr("dy", ".35em")
-          //     .text(function(d) {
-          //       console.log(d);
-          //       if (d.data.value > 0) {
-          //         return d.data.label + ": " + d.data.value;
-          //       }
-          //     });
+          g.append("text")
+              .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
+              .attr("dy", ".35em")
+              .text(function(d) {
+                if (d.data.value > 0) {
+                  return d.data.label + ": " + d.data.value
+                }
+              });
 
       });
   };
