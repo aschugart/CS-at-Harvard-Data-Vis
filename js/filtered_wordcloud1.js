@@ -100,14 +100,18 @@ function UpdateVisualization() {
     word_frequencies = d3.values(word_frequencies);
     console.log(word_frequencies);
 
+    var greyscale = ["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"];
+
     var color2 = d3.scale.linear()
         .domain([0,1,2,3,4,5,6,10,15,20,100])
-        .range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
+        .range(greyscale.reverse());
 
     d3.layout.cloud().size([800, 300])
         .words(word_frequencies)
         .rotate(0)
-        .fontSize(function(d) { return d.size; })
+        .fontSize(function(d) { 
+            return (d.size + 10); 
+        })
         .on("end", draw)
         .start();
 
