@@ -1,11 +1,15 @@
 var border = 1;
 var bordercolor='black';
 
-// var frequency_list = [{"text":"study","size":40},{"text":"motion","size":15},{"text":"forces","size":10}];
+// var frequency_list = [{"text":"study","size":40},{"text":"motion","size":15},{"text":"forces","size":10}];   
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width_wordcloud = 500 - margin.left - margin.right,
     height_wordcloud = 350 - margin.top - margin.bottom;
+
+// var fisheye = d3.fisheye.circular()
+//     .radius(200)
+//     .distortion(2);
 
 var svg_wordcloud1 = d3.select("#wordcloud1").append("svg")
     .attr("width", width_wordcloud + margin.left + margin.right)
@@ -16,6 +20,7 @@ var svg_wordcloud1 = d3.select("#wordcloud1").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var data;
+
 
 loadData();
 
@@ -115,6 +120,10 @@ function UpdateVisualization() {
 
         wordcloud.enter().append("text");
 
+        // wordcloud.on("mousemove", function() {
+        // fisheye.focus(d3.mouse(this));
+        // });
+
         wordcloud.style("font-size", function(d) {
                 return d.size + "px"; 
             })
@@ -123,6 +132,11 @@ function UpdateVisualization() {
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
             })
             .text(function(d) { return d.text; });
+
+        // wordcloud.each(function(d) {d.fisheye = fisheye(d); })
+        //     .attr("transform", function(d) {
+        //         return "translate(" + [d.fisheye.x, d.fisheye.y] + ")rotate(" + d.rotate + ")";
+        //     })
 
         wordcloud.exit().remove();
     }
