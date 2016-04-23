@@ -234,7 +234,11 @@ function showPie(category, gender) {
           g.append("text")
               .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
               .attr("dy", ".35em")
-              .text(function(d) {return d.data.label + ": " + d.data.value});
+              .text(function(d) {
+                if (d.data.value > 0) {
+                  return d.data.label + ": " + d.data.value
+                }
+              });
 
       });
   };

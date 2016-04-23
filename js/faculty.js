@@ -1,33 +1,33 @@
 var margin = {top: 100, right: 80, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
+    width = 600 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var parseDate = d3.time.format("%Y").parse;
+var parseDatef = d3.time.format("%Y").parse;
 
-var x_fac = d3.time.scale()
+var xf = d3.time.scale()
     .range([0, width]);
 
-var y_fac = d3.scale.linear()
+var yf = d3.scale.linear()
     .range([height, 0]);
 
-var color = d3.scale.ordinal()
+var colorf = d3.scale.ordinal()
     //.range(["#A6D8DE", "#F9F1B5", "#7B9DA6"]);
     .range(["#F9F1B5", "95c2c7", "7B9DA6"]);
 
-var xAxis_fac = d3.svg.axis()
-    .scale(x_fac)
+var xAxisf = d3.svg.axis()
+    .scale(xf)
     .orient("bottom");
 
-var yAxis_fac = d3.svg.axis()
-    .scale(y_fac)
+var yAxisf = d3.svg.axis()
+    .scale(yf)
     .orient("left");
 
-var line_fac = d3.svg.line()
+var linef = d3.svg.line()
     .interpolate("linear")
-    .x(function(d) { return x_fac(d.date); })
-    .y(function(d) { return y_fac(d.number); });
+    .x(function(d) { return xf(d.date); })
+    .y(function(d) { return yf(d.number); });
 
-var svg_line_graph_fac = d3.select("body").append("svg")
+var svg_line_graphf = d3.select("#line2").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -36,15 +36,13 @@ var svg_line_graph_fac = d3.select("body").append("svg")
 d3.csv("data/faculty.csv", function(error, data) {
   if (error) throw error;
 
-  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "AcademicYear"; }));
-
-  console.log(color.domain);
+  colorf.domain(d3.keys(data[0]).filter(function(keyf) { return keyf !== "AcademicYear"; }));
 
   data.forEach(function(d) {
-    d["AcademicYear"] = parseDate(d["AcademicYear"]);
+    d["AcademicYear"] = parseDatef(d["AcademicYear"]);
   });
 
-  var cities_fac = color.domain().map(function(name) {
+  var citiesf = colorf.domain().map(function(name) {
     return {
       name: name,
       values: data.map(function(d) {
@@ -53,28 +51,30 @@ d3.csv("data/faculty.csv", function(error, data) {
     };
   });
 
+  console.log(citiesf);
+
   // console.log("Cities: ");
   // console.log(cities);
 
-  x.domain(d3.extent(data, function(d) { return d["AcademicYear"]; }));
+  xf.domain(d3.extent(data, function(d) { return d["AcademicYear"]; }));
 
-  y.domain([
-    d3.min(cities_fac, function(c) { 
+  yf.domain([
+    d3.min(citiesf, function(c) { 
       return d3.min(c.values, function(v) { 
         return v.number; 
       }); 
     }),
-    d3.max(cities_fac, function(c) { return d3.max(c.values, function(v) { return v.number; }); })
+    d3.max(citiesf, function(c) { return d3.max(c.values, function(v) { return v.number; }); })
   ]);
 
-  svg_line_graph_fac.append("g")
+  svg_line_graphf.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis_fac);
+      .call(xAxisf);
 
-  svg_line_graph_fac.append("g")
+  svg_line_graphf.append("g")
       .attr("class", "y axis")
-      .call(yAxis_fac)
+      .call(yAxisf)
     .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
@@ -120,24 +120,24 @@ d3.csv("data/faculty.csv", function(error, data) {
   // // Data exit
   // circle.exit().remove();
 
-  var city_fac = svg_line_graph.selectAll(".city")
-      .data(cities_fac)
+  var cityf = svg_line_graphf.selectAll(".cityf")
+      .data(citiesf)
     .enter().append("g")
-      .attr("class", "city");
+      .attr("class", "cityf");
 
-  city_fac.append("path")
-      .attr("class", "line")
-      .attr("d", function(d) { 
+  cityf.append("path")
+      .attr("class", "linef")
+      .attr("d", function(d) {
         console.log(d.values);
-        return line(d.values); 
+        return linef(d.values); 
       })
-      .style("stroke", function(d) { return color(d.name); });
+      .style("stroke", function(d) { return colorf(d.name); });
       
-  city_fac.append("text")
+  cityf.append("text")
        .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-       .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.number) + ")"; })
+       .attr("transform", function(d) { return "translate(" + xf(d.value.date) + "," + yf(d.value.number) + ")"; })
        .attr("x", 3)
        .attr("dy", ".35em")
        .text(function(d) { return d.name; });
 
-});
+ });
