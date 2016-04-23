@@ -11,9 +11,8 @@ var y_stack = d3.scale.linear()
     .rangeRound([height, 0]);
 
 var color_stack = d3.scale.ordinal()
-    .range(["#EBDFE8", "#AA6C64", "#1C5672", "#560000", "#DEA27A", "#A8BA95", "#ff8c00"]);
-//AA6C64 
-//1C5672
+    .range(["#A8BA95", "#AA6C64", "#1C5672", "#560000", "#DEA27A", "#EBDFE8", "#ff8c00"]);
+
 var xAxis_stack = d3.svg.axis()
     .scale(x_stack)
     .orient("bottom");

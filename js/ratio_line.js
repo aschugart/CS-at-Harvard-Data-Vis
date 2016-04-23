@@ -180,12 +180,12 @@ function updateVisualization() {
     // Update
     circles
         .on("click", showEdition)
-        .style("opacity", 0.5)
+        .style("opacity", 0.9)
         .transition()
         .duration(transitionDuration)
         .attr("cx", function(d) { return xScale_line(d.Year); })
         .attr("cy", function(d) {return yScale_line(d[chartValue])})
-        .style("opacity", 0.8)
+        .style("opacity", 0.9)
         .transition()
         .duration(transitionDuration)
         .call(tip);
