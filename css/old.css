@@ -125,6 +125,13 @@ a:hover, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { text-decoration: none;
     position: relative;
 }
 
+.screengrowth {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+
 .container {
     width:100%;
     overflow:none;

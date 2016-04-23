@@ -255,81 +255,40 @@
     </div>
 </div>
 
-<div class="screen" id="growth">
+<div>
+<div class="screengrowth" id="growth">
     <div class="container">
-        <div class="box time-box">
-        <h2>Growth of the CS Concentration</h2>
-    </div>
-        <div class="centered-container">
-            <center><div id="line">
-                    <form action="" id="faculty" onchange="UpdateVisualization3()">
-                        <div class="radio">
-                          <label><input type="radio" name="faculty" value="faculty" checked="checked">Faculty</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="students" value="students">Students</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="all" value="all">Female</label>
-                        </div>
-                    </form>
-        </div></center>
-        </div>
-    </div>
-        <div class="centered-container">
-               <br>
+        <div class="box time-box"><h2>Growth of the CS Concentration</h2></div>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-        <center><div id="scatter"></div></center>
-    </div>
-        <form class="form-inline">
-            <div class="form-group">
-                <br>
-                <label for="rankingType">Group by</label>
-                <select class="form-control" id="ranking-type" onchange="updateVisualization()">
-                    <option value="Faculty">Faculty</option>
-                    <option value="Students">Students</option>
-                    <option value="Ratio">Ratio</option>
-                </select>
-            </div>
-        </form>
-        <form>
-            <br> Time Period: <input id="start" type="number" class="form-control" name="year">
-                - <input id="end" type="number" name="year" class="form-control">
-            <button type='button' class="btn btn-default" onClick="updateVisualization()">Filter</button>
-        </form>
-</div>
 
+    <center><div class="container">
+                
+
+            <table>
+                <td>Statistic:</td>
+                <td>
+
+                        <div class="user-control">
+                            <select id="data-choice" class="form-control form-control-right">
+                                <option class="o1" value="Faculty">Faculty</option>
+                                <option value="Students">Students</option>
+                            </select>
+                        </div>
+
+            </table>
+          
+        </div></center>
+
+        <!-- Parent container for the visualization -->
+        <center><div id="chart-area_line"></div></center>
+        <center><div id="chart-area_ratio"></div></center>
+        <center><div id="line"></div></center>
+
+
+</div>
+</div>
+</div>
 
 <div class="screen" id="credits">
     <div class="box centered" id="credits-box">
@@ -353,8 +312,9 @@
 <script src="js/filtered_wordcloud1.js"></script>
 <script src="js/filtered_wordcloud2.js"></script>
 <script src="js/line.js"></script>
-<script src="js/scatter.js"></script>
 <script src="js/ratio_line.js"></script>
+<script src="js/ratio.js"></script>
+
 
 </body>
 
