@@ -53,7 +53,10 @@ h1 {font-family: 'Josefein Sans', sans-serif;}
 
 .para_marg {
     margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
+
 
 .focus text { font: 11px sans-serif; }
 
@@ -373,4 +376,8 @@ input[type=range]:focus { outline: 0; }
 
 .options {
     margin-bottom: 20px;
+}
+
+#credits-box {
+    padding: 72px; 
 }
