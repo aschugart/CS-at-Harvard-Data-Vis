@@ -83,6 +83,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
       .on('click', function(d) {
+        d3.select("#temppie").remove();
         return showPie(d.name, d.gender);
       })
       .transition()
@@ -188,6 +189,7 @@ function showPie(category, gender) {
           console.log(years1);
 
           var svg_prog_pie = d3.select("#prog_pie").append("svg")
+              .attr("id", "temppie")
               .attr("width", width + margin.left + margin.right)
               .attr("height", height + margin.top + margin.bottom)
               .append("g")

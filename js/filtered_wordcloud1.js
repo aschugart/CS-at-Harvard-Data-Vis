@@ -104,9 +104,9 @@ function UpdateVisualization() {
 
     var color2 = d3.scale.linear()
         .domain([0,1,2,3,4,5,6,10,15,20,100])
-        .range(greyscale.reverse());
+        .range(greyscale);
 
-    d3.layout.cloud().size([800, 300])
+    d3.layout.cloud().size([700, 300])
         .words(word_frequencies)
         .rotate(0)
         .fontSize(function(d) { 
@@ -142,8 +142,8 @@ function UpdateVisualization() {
             })
             .text(function(d) { return d.text; })
             .on('mouseover', function(d) {
-                tip.select('.text').html("Word: " + d.text + "<br>Occurrences: " + d.size + " ("
-                 + ((d.size/(filteredData.length)) * 100).toFixed(2) + "%)");
+                tip.select('.text').html("Word: " + d.text + "<br>Occurrences: " + (d.size - 10) + " ("
+                 + (((d.size - 10)/(filteredData.length)) * 100).toFixed(2) + "%)");
                 tip.style('display', 'block');
             })
             .on('mouseout', function() {
