@@ -1,6 +1,3 @@
-/**
- * Created by Annie on 12/04/2016.
- */
 
 
 var margin = {top: 100, right: 80, bottom: 30, left: 50},
