@@ -122,7 +122,7 @@ function UpdateVisualization2() {
             .style("fill", function(d, i) { return color2(i); })
         
         wordcloud2.attr("transform", function(d) {
-                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                return "translate(" + [d.x, (d.y-38)] + ")rotate(" + d.rotate + ")";
             })
             .text(function(d) { return d.text; })
             .on('mouseover', function(d) {

@@ -176,10 +176,17 @@ function updateVisualization() {
         .attr("r", 10)
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide);
+      //   .on('click', function(d) {
+      //       d3.select("#barratio").remove();
+      //       return showBar(d.Year, d.SMinority);
+      // });;
 
     // Update
     circles
-        .on("click", showEdition)
+      .on('click', function(d) {
+        d3.select("#barratio").remove();
+        return showBar(d.Ratio, d.SMinority);
+      })
         .style("opacity", 0.9)
         .transition()
         .duration(transitionDuration)
@@ -227,17 +234,89 @@ function updateVisualization() {
 
 
 //Show details for a specific FIFA World Cup
-var showEdition = function(d){
- console.log(d);
- $("#totalfaculty").text(d.Faculty);
- $("#totalstudents").text(d.Students);
- $("#mfaculty").text(d.FMinority);
- $("#mstudents").text(d.SMinority);
- $("#ffaculty").text(d.FWomen);
- $("#fstudents").text(d.SWomen);
- d3.select(".selected").classed("selected", false);
- d3.select(this).classed("selected", true);
+// var showEdition = function(d){
+//  console.log(d);
+//  $("#totalfaculty").text(d.Faculty);
+//  $("#totalstudents").text(d.Students);
+//  $("#mfaculty").text(d.FMinority);
+//  $("#mstudents").text(d.SMinority);
+//  $("#ffaculty").text(d.FWomen);
+//  $("#fstudents").text(d.SWomen);
+//  d3.select(".selected").classed("selected", false);
+//  d3.select(this).classed("selected", true);
+// };
+
+
+function showBar(category, gender) {
+
+  var data;
+  loadData();
+
+var x_barratio = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y_barratio = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis_barratio = d3.svg.axis()
+    .scale(x_barratio)
+    .orient("bottom");
+
+var yAxis_barratio = d3.svg.axis()
+    .scale(y_barratio)
+    .orient("left")
+    .ticks(10, "%");
+
+var svg_barratio = d3.select("#barratio").append("svg2")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+function loadData(){
+d3.csv("data/RatioNewData.csv", type, function(error, data) {
+  if (error) throw error;
+
+  x.domain(data.map(function(d) { return d.Ratio; }));
+  y.domain([0, d3.max(data, function(d) { return d.SMinority; })]);
+
+  console.log(data);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis_barratio);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis_barratio)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Frequency");
+
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x_barratio(d.Ratio); })
+      .attr("width", x_barratio.rangeBand())
+      .attr("y", function(d) { return y_barratio(d.SMinority); })
+      .attr("height", function(d) { return height - y_barratio(d.SMinority); });
+
+});
+
+function type(d) {
+  d.SMinority = +d.SMinority;
+  d.Ratio = +d.Ratio;
+  return d;
+}
+}
+
 };
+
 
 
 
