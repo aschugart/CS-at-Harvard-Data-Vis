@@ -26,7 +26,7 @@ console.log(radius);
 
 var colorscale = d3.scale.ordinal()
     //.range(["#A8BA95", "#AA6C64", "#EBDFE8", "#560000", "#DEA27A", "#1C5672"]);
-    .range(["#c9a19c", "#AA6C64", "#ffcccc", "#560000", "#adc8e6", "#1C5672"]);
+    .range(["#c9a19c", "#AA6C64", "#ffcccc", "#560000", "#82acc9", "#1C5672"]);
 
 console.log(colorscale("Male"));
 console.log(colorscale("Female"));
