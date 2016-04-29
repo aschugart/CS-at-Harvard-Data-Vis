@@ -11,7 +11,7 @@ var y_stack = d3.scale.linear()
     .rangeRound([height, 0]);
 
 var color_stack = d3.scale.ordinal()
-    .range(["#A8BA95", "#AA6C64", "#1C5672", "#560000", "#DEA27A", "#EBDFE8", "#ff8c00"]);
+    .range(["#633636", "#945951", "#dbc1bd", "#82acc9", "#457aa1", "#2d8cb9"]);
 
 var xAxis_stack = d3.svg.axis()
     .scale(x_stack)
@@ -197,7 +197,7 @@ function showPie(category, gender) {
 
           var colorscale = d3.scale.ordinal()
               //.domain(["American Indian or Alaskan Native", "Asian", "Black or African American", "Caucasian", "Hispanic or Latino", "Other"])
-              .range(["#A8BA95", "#AA6C64", "#EBDFE8", "#560000", "#DEA27A", "#1C5672"]);
+              .range(["#422424", "#633636", "#945951", "#ae736b", "#c9a29c", "#dbc1bd", "#c9dbe8", "#82acc9", "#457aa1", "#264459", "#365f7d", "#1e3648"]);
 
           var tip = d3.tip()
              .attr('class', 'd3-tip')
