@@ -108,32 +108,40 @@ function UpdateVisualization2() {
         .start();
 
     function draw(words) {
-        var wordcloud2 = svg_wordcloud2
+        var wordcloud = svg_wordcloud2
             // without the transform, words words would get cutoff to the left and top, they would
             // appear outside of the SVG area
             .attr("transform", "translate(200,200)")
             .selectAll("text")
             .data(words);
 
-        wordcloud2.enter().append("text")
+        wordcloud.enter().append("text");
+
+        wordcloud
             .style("font-size", function(d) {
                 return d.size + "px"; 
             })
+            .transition()
+            .duration(1000)
             .style("fill", function(d, i) { return color2(i); })
-        
-        wordcloud2.attr("transform", function(d) {
+            .attr("transform", function(d) {
                 return "translate(" + [d.x, (d.y-38)] + ")rotate(" + d.rotate + ")";
             })
-            .text(function(d) { return d.text; })
+            .text(function(d) { return d.text; });
+
+        wordcloud
             .on('mouseover', function(d) {
                 tip.select('.text').html("Word: " + d.text + "<br>Occurrences: " + (d.size - 10) + " ("
-                 + (((d.size - 10)/(filteredData2.length)) * 100).toFixed(2) + "%)");
+                 + (((d.size - 10)/(filteredData.length)) * 100).toFixed(2) + "%)");
                 tip.style('display', 'block');
             })
             .on('mouseout', function() {
                 tip.style('display', 'none');
             });
 
-        wordcloud2.exit().remove();
+        wordcloud.exit()
+        .transition()
+        .duration(1000)
+        .remove();
     }
 }

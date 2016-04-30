@@ -113,6 +113,7 @@ function UpdateVisualization() {
             return (d.size + 10); 
         })
         .on("end", draw)
+
         .start();
 
 
@@ -133,14 +134,19 @@ function UpdateVisualization() {
 
         wordcloud.enter().append("text");
 
-        wordcloud.style("font-size", function(d) {
+        wordcloud
+            .style("font-size", function(d) {
                 return d.size + "px"; 
             })
+            .transition()
+            .duration(1000)
             .style("fill", function(d, i) { return color2(i); })
             .attr("transform", function(d) {
                 return "translate(" + [d.x, (d.y-38)] + ")rotate(" + d.rotate + ")";
             })
-            .text(function(d) { return d.text; })
+            .text(function(d) { return d.text; });
+
+        wordcloud
             .on('mouseover', function(d) {
                 tip.select('.text').html("Word: " + d.text + "<br>Occurrences: " + (d.size - 10) + " ("
                  + (((d.size - 10)/(filteredData.length)) * 100).toFixed(2) + "%)");
@@ -150,6 +156,9 @@ function UpdateVisualization() {
                 tip.style('display', 'none');
             });
 
-        wordcloud.exit().remove();
+        wordcloud.exit()
+        .transition()
+        .duration(1000)
+        .remove();
     }
 }
