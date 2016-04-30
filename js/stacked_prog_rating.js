@@ -28,11 +28,11 @@ var svg_stacked_prog = d3.select("#prog_rating_bar").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var tip = d3.tip()
+var tip_stack = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0]);
 
-svg_stacked_prog.call(tip);
+svg_stacked_prog.call(tip_stack);
 
 d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
   if (error) throw error;
@@ -48,7 +48,7 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
   x_stack.domain(data.map(function(d) { return d.Rating; }));
   y_stack.domain([0, d3.max(data, function(d) { return d.total; })]);
 
-  tip
+  tip_stack
     .html(function(d) {
         return "Percentage of " + (d.gender).toLowerCase() + " in category " + d.name + ": " + "<br>" + (d.y1 - d.y0) + "%";
     });
@@ -74,23 +74,34 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
       .attr("class", "g")
       .attr("transform", function(d) { return "translate(" + x_stack(d.Rating) + ",0)"; });
 
+  var clicked = false;
   state.selectAll("rect")
       .data(function(d) { return d.ages; })
     .enter().append("rect")
       .attr("width",  x_stack.rangeBand())
       .attr("y", function(d) { return y_stack(d.y1); })
       .attr("height", function(d) { return y_stack(d.y0) - y_stack(d.y1); })
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
+      .on('mouseover', function(d) {
+        d3.select("#temppie").remove();
+        return showPie(d.name, d.gender);    
+      })
+      .on('mouseout', function(d) {
+        tip_stack.hide;
+        if (clicked == false) {
+          d3.select("#temppie").remove();
+        }
+      })
       .on('click', function(d) {
+        clicked = true;
         d3.select("#temppie").remove();
         return showPie(d.name, d.gender);
+        clicked = false;
       })
       .transition()
       .duration(1000)
       .style("fill", function(d) { return color_stack(d.name); });
 
-  svg_stacked_prog.call(tip);
+  svg_stacked_prog.call(tip_stack);
 
   var legend = svg_stacked_prog.selectAll(".legend")
       .data(color_stack.domain().slice().reverse())
@@ -136,12 +147,12 @@ function showPie(category, gender) {
           console.log(filteredData);
 
           // get the count for each "years" of programming
-          var years0, years1, years2, years3, years4, years5, years6,
-          years7, years8, years9, years10, years11;
+          // var years0, years1, years2, years3, years4, years5, years6,
+          // years7, years8, years9, years10, years11;
 
-          years0 = years1 = years2 = years3 = years4 = years5 = years6 = years7 = years8 = years9 = years10 = years11 = 0;
+          var years0, years1, years2, years3, years46, years7;
 
-          console.log(years0);
+          years0 = years1 = years2 = years3 = years46 = years7 = 0;
 
           filteredData.forEach(function (d) {
             if (d.years == "0") {
@@ -153,40 +164,26 @@ function showPie(category, gender) {
             } else if (d.years == "3") {
               years3++;
             } else if (d.years == "4") {
-              years4++;
+              years46++;
             } else if (d.years == "5") {
-              years5++;
+              years46++;
             } else if (d.years == "6") {
-              years6++;
-            } else if (d.years == "7") {
-              years7++;
-            } else if (d.years == "8") {
-              years8++;
-            } else if (d.years == "9") {
-              years9++;
-            } else if (d.years == "10") {
-              years10++;
+              years46++;
             } else {
-              years11++;
+              years7++;
             }
           });
+
+          var total_in_category = (years0 + years1 + years2 + years3 + years46 + years7);
 
           var numbers = [
               {label: 'Less than a year', value: years0},
               {label: '1 year', value: years1},
               {label: '2 years', value: years2},
               {label: '3 years', value: years3},
-              {label: '4 years', value: years4},
-              {label: '5 years', value: years5},
-              {label: '6 years', value: years6},
-              {label: '7 years', value: years7},
-              {label: '8 years', value: years8},
-              {label: '9 years', value: years9},
-              {label: '10 years', value: years10},
-              {label: '11 years', value: years11}
+              {label: '4 - 6 years', value: years46},
+              {label: '7+ years', value: years7}
           ];
-
-          console.log(years1);
 
           var svg_prog_pie = d3.select("#prog_pie").append("svg")
               .attr("id", "temppie")
@@ -219,7 +216,7 @@ function showPie(category, gender) {
 
           tip
              .html(function(d) {
-                 return d.data.label+ " : " +  d.value;
+                 return d.data.label + ": " + Math.round((d.data.value / total_in_category) * 100) + "%";
              });
 
           var g = svg_prog_pie.selectAll(".arc")
@@ -238,7 +235,7 @@ function showPie(category, gender) {
               .attr("dy", ".35em")
               .text(function(d) {
                 if (d.data.value > 0) {
-                  return d.data.label + ": " + d.data.value
+                  return d.data.label + ": " + Math.round((d.data.value / total_in_category) * 100) + "%";
                 }
               });
 
