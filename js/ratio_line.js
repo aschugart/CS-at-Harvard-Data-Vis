@@ -146,16 +146,29 @@ function updateVisualization() {
 
     var sel = document.getElementById('data-choice');
     y_text = sel.options[sel.selectedIndex].text;
-    var formatDate
+    var formatDate;
 
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-15, 0])
         .html(function(f) {
-            return "<emph>"
-            +y_text+":</emph> <span style='color:white'>" + 
-            d3.format(",")(f[chartValue]) + "</span>";
+            if (chartValue == "Faculty") {
+                return "<emph>"
+                +y_text+":</emph> <span style='color:white'>" + 
+                d3.format(",")(f[chartValue]) + "</span>" + "<br>"
+                + "Total Minority: " + f.FMinority + "<br>" + "Total Women: " + f.FWomen
+            } else if (chartValue == "Students") {
+                return "<emph>"
+                +y_text+":</emph> <span style='color:white'>" + 
+                d3.format(",")(f[chartValue]) + "</span>" + "<br>"
+                + "Total Minority: " + f.SMinority + "<br>" + "Total Women: " + f.SWomen
+            } else {
+                return "<emph>"
+                +y_text+":</emph> <span style='color:white'>" + 
+                d3.format(",")(f[chartValue]) + "</span>"
+            }
         });
+
 
 
     // Key function / data-join
@@ -177,10 +190,10 @@ function updateVisualization() {
 
     // Update
     circles
-      .on('click', function(d) {
-        d3.select("#tempbar").remove();
-        return showBar(d.Ratio, d.SMinority);
-      })
+    //   .on('click', function(d) {
+    //     d3.select("#tempbar").remove();
+    //     return showBar(d.Year);
+    //   })
         .style("opacity", 0.9)
         .transition()
         .duration(transitionDuration)
@@ -228,83 +241,88 @@ function updateVisualization() {
 
 
 //Show details for a specific FIFA World Cup
-var showEdition = function(d){
- console.log(d);
- $("#totalfaculty").text(d.Faculty);
- $("#totalstudents").text(d.Students);
- $("#mfaculty").text(d.FMinority);
- $("#mstudents").text(d.SMinority);
- $("#ffaculty").text(d.FWomen);
- $("#fstudents").text(d.SWomen);
- d3.select(".selected").classed("selected", false);
- d3.select(this).classed("selected", true);
-};
+// var showEdition = function(d){
+//  console.log(d);
+//  $("#totalfaculty").text(d.Faculty);
+//  $("#totalstudents").text(d.Students);
+//  $("#mfaculty").text(d.FMinority);
+//  $("#mstudents").text(d.SMinority);
+//  $("#ffaculty").text(d.FWomen);
+//  $("#fstudents").text(d.SWomen);
+//  d3.select(".selected").classed("selected", false);
+//  d3.select(this).classed("selected", true);
+// };
 
 
-var showBar = function(d){
+// function showBar(year){
 
-  var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 400 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+//   var margin = {top: 20, right: 20, bottom: 30, left: 40},
+//     width = 400 - margin.left - margin.right,
+//     height = 400 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+//     var x = d3.scale.ordinal()
+//         .rangeRoundBands([0, width], .1);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+//     var y = d3.scale.linear()
+//         .range([height, 0]);
 
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
+//     var xAxis = d3.svg.axis()
+//         .scale(x)
+//         .orient("bottom");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10, "%");
+//     var yAxis = d3.svg.axis()
+//         .scale(y)
+//         .orient("left")
+//         .ticks(10, "%");
 
-var svg = d3.select("#barratio").append("svg")
-    .attr("id", "tempbar")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+//     var svg_bar_detail = d3.select("#barratio").append("svg")
+//         .attr("id", "tempbar")
+//         .attr("width", width + margin.left + margin.right)
+//         .attr("height", height + margin.top + margin.bottom)
+//       .append("g")
+//         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("data/RatioNewData.csv", type, function(error, data) {
-  if (error) throw error;
+//         loaddata();
 
-  x.domain(data.map(function(d) { return d.SMinority; }));
-  y.domain([0, d3.max(data, function(d) { return d.Ratio; })]);
+//         function loaddata(){
 
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+//     d3.csv("data/2008.csv", function(error, data) {
+//       if (error) throw error;
 
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Frequency");
+//       x.domain(data.map(function(d) { return d.Type; }));
+//       y.domain([0, d3.max(data, function(d) { return d.Percent; })]);
 
-  svg.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.SMinority); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.Ratio); })
-      .attr("height", function(d) { return height - y(d.Ratio); });
-});
+//       svg_bar_detail.append("g")
+//           .attr("class", "x axis")
+//           .attr("transform", "translate(0," + height + ")")
+//           .call(xAxis);
+
+//       svg_bar_detail.append("g")
+//           .attr("class", "y axis")
+//           .call(yAxis)
+//         .append("text")
+//           .attr("transform", "rotate(-90)")
+//           .attr("y", 6)
+//           .attr("dy", ".71em")
+//           .style("text-anchor", "end")
+//           .text("Frequency");
+
+//       svg_bar_detail.selectAll(".bar")
+//           .data(data)
+//         .enter().append("rect")
+//           .attr("class", "bar")
+//           .attr("x", function(d) { return x(d.SMinority); })
+//           .attr("width", x.rangeBand())
+//           .attr("y", function(d) { return y(d.Ratio); })
+//           .attr("height", function(d) { return height - y(d.Ratio); });
+//     });
 
 
-function type(d) {
-  d.SMinority = +d.SMinority;
-  d.Ratio = +d.Ratio;
-  return d;
-}
-}
+//     function type(d) {
+//       d.SMinority = +d.SMinority;
+//       d.Ratio = +d.Ratio;
+//       return d;
+//     }
+// }
+// }
 

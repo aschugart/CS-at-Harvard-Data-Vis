@@ -1,16 +1,16 @@
 /**
  * Created by Thomas on 4/12/2016.
  */
-var margin = {top: 80, right: 40, bottom: 60, left: 60};
+var margin = {top: 80, right: 0, bottom: 60, left: 60};
 
-var width = 500,
+var width = 400,
     height = 300,
     radius = Math.min(width, height) / 2;
 
 var numbers = [
     {label: 'American Indian or Alaskan Native', value: 4},
     {label: 'Asian', value: 322},
-    {label: 'Black or African American', value: 39},
+    {label: 'Black/African American', value: 39},
     {label: 'Caucasian', value: 372},
     {label: 'Hispanic or Latino', value: 35},
     {label: 'Other', value: 134}

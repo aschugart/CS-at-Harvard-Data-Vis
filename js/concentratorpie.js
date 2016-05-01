@@ -1,6 +1,6 @@
 var margin = {top: 40, right: 40, bottom: 60, left: 60};
 
-var width = 500,
+var width = 400,
     height = 300,
     radius = Math.min(width, height) / 2;
 
