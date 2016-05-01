@@ -3,31 +3,10 @@
 <head>
     <meta charset="UTF-8">
 
-        <style>
-
-        .axis path,
-        .axis line {
-          fill: none;
-          stroke: #000;
-          shape-rendering: crispEdges;
-        }
-
-        /*.x.axis path {
-          display: none;
-        }*/
-
-        .line, .linef {
-          fill: none;
-          stroke: white;
-          stroke-width: 1.5px;
-        }
-
-
-    </style>
-
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/old.css">   
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/main.css">   
 
     <title>Understanding the CS Experience at Harvard</title>
 </head>
@@ -36,14 +15,15 @@
 
 <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
     <div class="navbar-header">
-        <a href="#home">CS @ Harvard</a>
+        <a href="#home">CS at Harvard</a>
     </div>
     <div class="container">
         <ul class="nav navbar-nav">
             <li><a href="#intro">Introduction</a></li>
             <li><a href="#perceptions">Perceptions</a></li>
-            <li><a href="#diversity">Diversity</a></li>
+            <li><a href="#diversity">Gender</a></li>
             <li><a href="#growth">Growth of the Department</a></li>
+            <li><a href="#dept">Accessing the Department</a></li>
             <li><a href="#credits">Credits and Screencast</a></li>
         </ul>
     </div>
@@ -51,308 +31,302 @@
 
 <div class="screen" id="home">
     <div class="centered-container">
-        <div class="box title-box">
-            <center>
-                <div class="box-container">
-                <h1>Understanding the CS Experience at Harvard</h1>
-                <h3>By Alex Abrahams, Tommy O'Shea, and Annie Schugart</h3>
-                </div>
-            </center>
-        </div>   
-        <center>
-            <div class="box time-box">
-                <h2>Since 2008, the number of computer science concentrators at Harvard has quadrupled.</h2>
-                <p class="introbox">More Harvard students than ever are getting a secondary in CS or 
-                    just exploring the field by taking a class. We have set out to visualize the CS experience at Harvard, breaking the data down by gender, race
-                    and background. We have also tried to show the changes that have been occurring on the faculty side. </p>
-            </div>
-        </center>
+        <div class="heading_box">
+            <h1>Understanding the CS Experience at Harvard</h1>
+            <h3>By Alex Abrahams, Tommy O'Shea, and Annie Schugart</h3>
+        </div>
+        <div class="box home_intro">
+            <h2>Since 2008, the number of computer science concentrators at Harvard has quadrupled.</h2>
+            <p>
+                More Harvard students than ever are getting a secondary in CS or 
+                just exploring the field by taking a class. We have set out to visualize the CS experience at Harvard, breaking the data down by gender, race
+                and background. We have also tried to show the changes that have been occurring on the faculty side.
+            </p>
+        </div>
     </div>
 </div>
 
 <div class="screen" id="intro">
-    <div class="description">
-        <h2>We have drawn on a survey of over 900 Harvard undergraduates to understand how
-            Computer Science is viewed and experienced here.</h2>
-        <p>Unless stated otherwise, our data comes from the Harvard Women in Computer Science's survey, which obtained responses
-        from a wide range of Harvard students (both computer science concentrators and non-concentrators, men and women,
-            and varying races). The pie charts below show the distribution of survey respondents.</p>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="pie_row">
-        <div class="row">
-            <div class="col-md-4" id="chart-area"></div>
-            <div class="col-md-4" id="chart-area2"></div>
-            <div class="col-md-4" id="chart-area3"></div>
+    <div class="box intro_box">
+        <div class="section_header">
+            <h1>Introduction</h1>
         </div>
+        <h2>
+            We have drawn on a survey of over 900 Harvard undergraduates to understand how
+            Computer Science is viewed and experienced here.
+        </h2>
+        <p>
+            Our data on the perceptions of Computer Science and how concentrators feel about their abilities comes from the <a href="http://advocacy.harvardwics.com/" target="_blank">Harvard Women in Computer Science Advocacy Council's survey</a>. This obtained responses
+            from a wide range of Harvard students; both computer science concentrators and non-concentrators, men and women, and varying races. Before we dive into insights from the dataset, we wanted to show you whose responses we are basing our analysis on, using these pie charts.
+        </p>
+    </div>
+    <div class="row pierow">
+        <div class="col-md-4 pie" id="chart-area3"></div>
+        <div class="col-md-4 pie" id="chart-area"></div>
+        <div class="col-md-4 pie" id="chart-area2"></div>
     </div>
 </div>
 
 <div class="screen" id="perceptions">
     <div class="centered-container">
-        <center>
-            <div class="box time-box" id="perceptions_head">
-                <h2>Perceptions of CS</h2>
+        <div class="box perception_box">
+            <div class="section_header perceptions_header">
+                <h1>Perceptions of CS</h1>
             </div>
-        <p> Our survey asked two groups of respondents (those with no CS background at Harvard and those who are concentrating or intending to concentrate in CS) what three words they would use to describe Computer Science. Their answers are displayed in the word clouds below, where the larger words represent the more common responses, and the smaller words represent less common responses. Feel free to use the filtering tools to compare responses from different kinds of students. </p>
-    </center>
-        <div class="left">
-            <div id="wordcloud1"></div>
-            <div class="col-md-8 options">
-                <div class="col-md-4 gender_options">
-                    <h4>Gender:</h4>
-                    <form action="" id="gender1option" onchange="UpdateVisualization()">
-                        <div class="radio">
-                          <label><input type="radio" name="gender1option" value="all_gender">All</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="gender1option" value="1" checked="checked">Male</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="gender1option" value="0">Female</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-4 pcsb_options">
-                    <h4>Prior CS Background:</h4>
-                    <form action="" id="pcsb1option" onchange="UpdateVisualization()">
-                        <div class="radio">
-                          <label><input type="radio" name="pcsb1option" value="all_pcsb" checked="checked">All</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="pcsb1option" value="0">Never taken CS at Harvard</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="pcsb1option" value="2">Taken a CS class and intending to concentrate in CS</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-4 race_options">
-                    <h4>Race:</h4>
-                    <form action="" id="race1option" onchange="UpdateVisualization()">
-                        <div class="radio">
-                          <label><input type="radio" name="race1option" checked="checked" value="all_race">All</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race1option" value="6">Native American or Alaskan Native</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race1option" value="1">Asian</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race1option" value="3">Black or African American</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race1option" value="2">Caucasian</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race1option" value="4">Hispanic or Latino</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race1option" value="5">Multiracial</label>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <p> 
+                The survey asked two groups of respondents (those with no CS background at Harvard and those who are concentrating or intending to concentrate in CS) <strong>what three words they would use to describe Computer Science concentrators</strong>. Their answers are displayed in the word clouds below, where the larger words represent the more common responses, and the smaller words represent less common responses. Feel free to use the filtering tools to compare responses from different kinds of students. 
+            </p>
         </div>
-        <div class="right">
-            <div id="wordcloud2"></div>
-            <div class="col-md-8 options">
-                <div class="col-md-4 gender_options">
-                    <h4>Gender:</h4>
-                    <form action="" id="gender2option" onchange="UpdateVisualization2()">
-                        <div class="radio">
-                          <label><input type="radio" name="gender2option" value="all_gender">All</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="gender2option" value="1">Male</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="gender2option" value="0" checked="checked">Female</label>
-                        </div>
-                    </form>
+        <div class="wordcloud_row">
+            <div class="left">
+                <div id="wordcloud1"></div>
+                <div class="col-md-8 options">
+                    <div class="col-md-4 gender_options">
+                        <h4>Gender:</h4>
+                        <form action="" id="gender1option" onchange="UpdateVisualization()">
+                            <div class="radio">
+                              <label><input type="radio" name="gender1option" value="all_gender">All</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="gender1option" value="1" checked="checked">Male</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="gender1option" value="0">Female</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 pcsb_options">
+                        <h4>Prior CS Background:</h4>
+                        <form action="" id="pcsb1option" onchange="UpdateVisualization()">
+                            <div class="radio">
+                              <label><input type="radio" name="pcsb1option" value="all_pcsb" checked="checked">All</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="pcsb1option" value="0">Never taken CS at Harvard</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="pcsb1option" value="2">Taken a CS class and intending to concentrate in CS</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 race_options">
+                        <h4>Race:</h4>
+                        <form action="" id="race1option" onchange="UpdateVisualization()">
+                            <div class="radio">
+                              <label><input type="radio" name="race1option" checked="checked" value="all_race">All</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race1option" value="6">Native American or Alaskan Native</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race1option" value="1">Asian</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race1option" value="3">Black or African American</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race1option" value="2">Caucasian</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race1option" value="4">Hispanic or Latino</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race1option" value="5">Multiracial</label>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-md-4 pcsb_options">
-                    <h4>Prior CS Background:</h4>
-                    <form action="" id="pcsb2option" onchange="UpdateVisualization2()">
-                        <div class="radio">
-                          <label><input type="radio" name="pcsb2option" value="all_pcsb" checked="checked">All</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="pcsb2option" value="0">Never taken CS at Harvard</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="pcsb2option" value="2">Taken a CS class and intending to concentrate in CS</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-4 race_options">
-                    <h4>Race:</h4>
-                    <form action="" id="race2option" onchange="UpdateVisualization2()">
-                        <div class="radio">
-                          <label><input type="radio" name="race2option" checked="checked" value="all_race">All</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race2option" value="6">Native American or Alaskan Native</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race2option" value="1">Asian</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race2option" value="3">Black or African American</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race2option" value="2">Caucasian</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race2option" value="4">Hispanic or Latino</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="race2option" value="5">Multiracial</label>
-                        </div>
-                    </form>
-                </div>
+            </div>
+            <div class="right">
+                <div id="wordcloud2"></div>
+                <div class="col-md-8 options">
+                    <div class="col-md-4 gender_options">
+                        <h4>Gender:</h4>
+                        <form action="" id="gender2option" onchange="UpdateVisualization2()">
+                            <div class="radio">
+                              <label><input type="radio" name="gender2option" value="all_gender">All</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="gender2option" value="1">Male</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="gender2option" value="0" checked="checked">Female</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 pcsb_options">
+                        <h4>Prior CS Background:</h4>
+                        <form action="" id="pcsb2option" onchange="UpdateVisualization2()">
+                            <div class="radio">
+                              <label><input type="radio" name="pcsb2option" value="all_pcsb" checked="checked">All</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="pcsb2option" value="0">Never taken CS at Harvard</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="pcsb2option" value="2">Taken a CS class and intending to concentrate in CS</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 race_options">
+                        <h4>Race:</h4>
+                        <form action="" id="race2option" onchange="UpdateVisualization2()">
+                            <div class="radio">
+                              <label><input type="radio" name="race2option" checked="checked" value="all_race">All</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race2option" value="6">Native American or Alaskan Native</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race2option" value="1">Asian</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race2option" value="3">Black or African American</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race2option" value="2">Caucasian</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race2option" value="4">Hispanic or Latino</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="race2option" value="5">Multiracial</label>
+                            </div>
+                        </form>
+                    </div>
 
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <div class="screen" id="diversity">
-    <div class="container">
-        <center>
-            <div class="box time-box">
-                <h2 id="coding_head">Coding Confidence Between Genders</h2>
+    <div class="centered-container">
+        <div class="box diversity-box">
+            <div class="section_header diversity_header">
+                <h1>Coding Confidence Between Genders</h1>
             </div>
-        </center>
-        <div>
-            <p class="para_marg">We asked respondents who said that they had taken a CS class at Harvard
-                and were intending to concentrate in CS how good they thought they were at programming compared to their peers in their CS classes. 5 is much better, and 1 is much worse.</p>
+            <p>
+                Respondents who said that they had taken a CS class at Harvard
+                and were intending to concentrate in CS were asked <strong>how good they thought they were at programming compared to their peers in their CS classes</strong>. 
+            </p>
         </div>
         <div class="left">
-        <center><div id="prog_rating_bar"></div></center>
+            <center>
+                <p id="stacked_info">
+                    They rated themselves on a scale of 1 to 5, where 1 is much worse, and 5 is much better.
+                </p>
+                <div id="prog_rating_bar"></div>
+            </center>
         </div>
         <div class="right">
-            <div align="left"><h2>Years of programming experience:</h2></div>
+            <div class="prog_pie_header">
+                <p>
+                    Hover over the stacked bar chart segments to see the distribution of years of
+                    programming experience for people in that group.
+                </p>
+                <h2>Years of programming experience:</h2>
+
+                <div id="prog_pie_info"></div>
+            </div>
             <center><div id="prog_pie"></div></center>
         </div>
     </div>
 </div>
 
-<div>
-<div class="screengrowth" id="growth">
-    <div class="container">
-        <center>
-            <div class="box time-box">
-                <h2>Growth of the CS Concentration</h2>
+<div class="screen" id="growth">
+    <div class="centered-container">
+        <div class="box growth_box">
+            <div class="section_header">
+                <h1>Growth of Computer Science</h1>
             </div>
-        </center>
-    <br>
-    <br>
-    <div>
-    <center><p class="para_marg_white" style="color:white">With the concentration growing four-fold since 2008, we sought to see if the faculty
-        had grown to accomodate the influx of students. Below, the line chart shows the total students, total faculty, <br>
-        and a comparison of the two through a faculty-to-student ratio. Similarly, we wanted to explore the exact diversity numbers (number of females and number of minorities) in both students as <br> well as in the faculty in the two
-        line charts at the bottom.</p>
-    </div></center><br>
-    <center><div class="container">
-                
-
-            <table>
-                <td>Statistic:</td>
-                <td>
-
-                        <div class="user-control">
-                            <select id="data-choice" class="form-control form-control-right">
-                                <option class="o1" value="Faculty">Faculty</option>
-                                <option value="Students">Students</option>
-                                <option value="Ratio">Ratio</option>
-                            </select>
-                        </div>
-
-            </table>
-                  <center><div id="chart-area_line"></div></center>
-
-        </div></center>
-
-
-
-    <div>
-
-
-        <!-- Parent container for the visualization -->
-        <center><div id="chart-area_ratio"></div></center>
-    
-
-        <div class="col-md-6 line1">
-            <br>
-            <br>
-            <h2>Breakdown of Students in CS Concentration</h2>
-        <center><div id="line"></div></center>
+            <p>
+                With the concentration growing four-fold since 2008, we wanted to see if the faculty
+                had also grown, in order to accomodate the influx of students. Below, the line chart shows the total students, total faculty,
+                and a comparison of the two through a faculty-to-student ratio. The faculty-to-student ratio graph
+                in particular demonstrates the increasing scarcity of CS professors relative to CS students.
+            </p>
+            <p>
+                Data is from the Harvard John A. Paulson School of Engineering and Applied Sciences (SEAS).
+            </p>
+        </div>
+        <div class="container line_graph">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="rankingType" class="selector_label">Choose data: </label>
+                    <select class="form-control" id="data-choice">
+                        <option class="o1" value="Faculty">Faculty</option>
+                        <option value="Students">Students</option>
+                        <option value="Ratio">Ratio</option>
+                    </select>
+                </div>
+            </form>
+            <div id="chart-area_line"></div>
+        </div>
     </div>
-
-    <div class="col-md-6 line3">
-        <br>
-        <br>
-        <h2>Breakdown of Faculty in CS Department</h2>
-        <center><div id="line2"></div></center>
-    </div>
-
-
-</div>
-</div>
 </div>
 
-<div class="screen" id="accessibility">
-    <div class="container">
-        <center>
-            <div class="box time-box">
-                <h2 id="coding_head">TF/Professor Accessibility</h2>
+<div class="screen" id="dept">
+    <div class="centered-container">
+        <div class="box dept_box">
+            <div class="section_header dept_header">
+                <h1>Accessing the Department</h1>
             </div>
-        </center>
-        <div>
-            <p class="para_marg">We asked respondents who said that they had taken a CS class at Harvard
-                and were intending to concentrate in CS to rank the accessibility of their TFs and Professors on a 1 to 5 scale, 5 being very accessible and 1 being very inaccessible. The results are represented below.<br><br><br></p>
+            <p>
+                Respondents to the Women in Computer Science survey who said that they had taken a CS class at Harvard
+                and were intending to concentrate in CS were asked to assess the accessibility of their TFs and Professors on a 1 to 5 scale, 5 being very accessible and 1 being very inaccessible. Overall TFs are found to be accessible than professors.
+            </p>
         </div>
         <div>
-        <center>
-            <button type="button" class="button" onclick="drawbars(tfdata, 100)">TFs</button>
-            <button type="button" class="button" onclick="drawbars(profdata, 100)">Professors</button>
-            <div id="access_bar"></div>
-            <div id="access_bar2"></div>
-        </center>
+            <center>
+                <button type="button" class="btn btn-default btn-lg" onclick="drawbars(tfdata, 100)">TFs</button>
+                <button type="button" class="btn btn-default btn-lg" onclick="drawbars(profdata, 100)">Professors</button>
+                <div id="access_bar"></div>
+                <div id="access_bar2"></div>
+            </center>
+        </div>
+        <div class="box dept_box2">
+            <p>
+                While the CS concentration becomes more diverse as its student numbers swell, 
+                the CS faculty has not yet seen much of a diversity increase. The following
+                data is from SEAS.
+            </p>
+        </div>
+        <div class="col-md-6 line1">
+            <h2 class="mini_header">Breakdown of Students in CS Concentration</h2>
+            <div id="line"></div>
+        </div>
+
+        <div class="col-md-6 line3">
+            <h2 class="mini_header">Breakdown of Faculty in CS Department</h2>
+            <div id="line2"></div>
         </div>
     </div>
 </div>
 
 <div class="screen" id="credits">
-    <div class="box centered" id="credits-box">
-    <div class="col-md-6 credits" 
-        <p>Project by Alex Abrahams, Thomas O'Shea, and Annie Schugart</p>
-        <p>CS 171, 2016</p>
-        <p>Data from Harvard <a href="http://www.harvardwics.com/">Women in Computer Science's</a>
-         survey and the <a href="http://www.seas.harvard.edu/">Harvard SEAS department</a>.<p>
-    </div>
-    <div class="col-md-6 credits1">
-        <p><a href="https://docs.google.com/document/d/1w9mfi3acP5po_GQzlGn0c-KcTQLe83KnR4z88MLe_HE/edit?usp=sharing">
-            Process Book</a></p>
-    </div>
+    <div class="row">
+        <div class="col-md-4 credits credits1"> 
+            <h2>Acknowledgements</h2>
+            <p>Project by <a href="http://alexabrahams.co.uk/" target="_blank">Alex Abrahams</a>, Thomas O'Shea, and Annie Schugart.</p>
+            <p>Special thanks to Niamh Durfee for her extraordinary patience and help.</p>
+            <p>Web layout inspired by Hugh Zabriskie and Cynthia Meng's <a href="http://hughzabriskie.com/cs171"> Behind Bars</a>.</p>
+        </div>
+        <div class="col-md-4 credits credits2">
+            <h2>Accompaniments</h2>
+            <p><a href="https://docs.google.com/document/d/1w9mfi3acP5po_GQzlGn0c-KcTQLe83KnR4z88MLe_HE/edit?usp=sharing">Process Book</a></p>
+            <p>Screencast</p>
+        </div>
+        <div class="col-md-4 credits credits3">
+            <h2>Data</h2>
+            <p> 
+                <a href="http://advocacy.harvardwics.com/data/" target="_blank">The Harvard Women in Computer Science Advocacy Council</a>.
+            </p>
+            <p>
+                <a href="http://www.seas.harvard.edu/" target="_blank">Harvard John A. Paulson School of Engineering and Applied Sciences</a>.
+            </p>
+        </div>
     </div>
 </div>
 

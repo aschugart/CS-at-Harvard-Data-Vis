@@ -45,9 +45,9 @@ function UpdateVisualization() {
 
     var tip = d3.select('#wordcloud1')
     .append('div')
-    .attr('class', 'd3-tip-cloud')
-
-   tip.append('div')
+    .attr('class', 'd3-tip-cloud');
+    
+    tip.append('div')
     .attr('class', 'text');
 
     // filter the array

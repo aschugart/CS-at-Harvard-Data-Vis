@@ -13,7 +13,6 @@ var svg = d3.select("#chart-area_line").append("svg")
 // Initialize data
 loadData();
 
-// FIFA world cup
 var data_line;
 
 
@@ -30,7 +29,7 @@ var xAxis_line = d3.svg.axis()
     .orient("bottom")
     .ticks(5);
 var x_group = svg.append("g")
-    .attr("class", "axis x-axis")
+    .attr("class", "axis x-axis growth-axis")
     .attr("transform", "translate(0,"+(height_line)+")");
 
 var yAxis_line = d3.svg.axis()
@@ -38,7 +37,7 @@ var yAxis_line = d3.svg.axis()
     .orient("left")
     .ticks(8);
 var y_group = svg.append("g")
-    .attr("class", "axis y-axis")
+    .attr("class", "axis y-axis growth-axis")
     .attr("transform", "translate(0,0)");
 //.call(yAxis);
 
