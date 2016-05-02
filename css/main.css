@@ -139,6 +139,16 @@
     margin-top: -150px;
 }
 
+#wordcloud1 {
+    margin-bottom: 5%;
+    position: relative;
+}
+
+#wordcloud2 {
+    margin-bottom: 5%;
+    position: relative;
+}
+
 .wordcloud_row {
     margin-top: 10%;
     max-width: 1280px;
