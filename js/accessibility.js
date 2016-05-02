@@ -1,3 +1,9 @@
+/*****************************************************************************/
+// This is the visualization that toggles between faculty and TFs to portray //
+// the accessibility of each, based on a 1 through 5 rating scale. This is   //
+// under the "Accessing the Department" section.                             //
+/*****************************************************************************/
+
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width_access = 1200 - margin.left - margin.right,
     height_access = 200 - margin.top - margin.bottom;
@@ -67,11 +73,6 @@ bar
       .on('mouseover', tips.show)
       .on('mouseout', tips.hide)
       .style("fill", function(d) { return color_scale(d.label); });
-
-// bar
-// 	.transition()
-// 	.duration(800)
-
 
 var txt = svg_access.selectAll("text")
 	.data(data)
