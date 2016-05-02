@@ -1,7 +1,3 @@
-/**
- * Created by Thomas on 4/11/2016.
- */
-
 var margin = {top: 40, right: 40, bottom: 60, left: 60};
 
 var width = 400,
