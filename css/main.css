@@ -254,11 +254,15 @@
 
 /*Credits Screen */
 #credits {
-    height: 100px;
+    height: 170px;
+    background: black;
 }
 
 .credits {
     text-align: center;
+    background: black;
+    color: white;
+    opacity: 0.8;
 }
 
 /*Backgrounds for the screens*/

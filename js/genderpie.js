@@ -1,6 +1,7 @@
-/**
- * Created by Thomas on 4/11/2016.
- */
+/*****************************************************************************/
+// This is the one of three pie charts that depict the breakdown of          //
+// respondents. This visualization is under the "Introduction" section.      //
+/*****************************************************************************/
 
 var margin = {top: 40, right: 40, bottom: 60, left: 60};
 

@@ -1,3 +1,9 @@
+/*****************************************************************************/
+// This is our innovative visualization of an interactive and updating word  //
+// cloud, displaying varying perceptions of computer science concentrators.  //
+// This is the rightmost word cloud under the "Perceptions of CS" section.   //
+/*****************************************************************************/
+
 var border = 1;
 var bordercolor='black';
 

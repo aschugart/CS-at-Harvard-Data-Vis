@@ -1,3 +1,10 @@
+/*****************************************************************************/
+// This is our linked visualization of a stacked bar chart portraying the    //
+// ratings of confidence between men and women. When clicking a section of   //
+// the stacked bar chart, it brings up the pie chart which depics the years  //
+// of computer science experience of students in that section.               //
+/*****************************************************************************/
+
 // Modified from https://bl.ocks.org/mbostock/3886208
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},

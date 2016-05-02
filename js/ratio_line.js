@@ -1,3 +1,8 @@
+/*****************************************************************************/
+// This is the visualization that depicts the total number of students, total//
+// number of faculty, and the student-to-faculty ratio in a selectable line  //
+// graph. This is under the "Growth of Computer Science" section.            //
+/*****************************************************************************/
 
 // SVG drawing area
 var margin_line = {top: 20, right: 20, bottom: 40, left: 60};
@@ -74,8 +79,6 @@ function loadData() {
 }
 
 var chartValue;
-// var timeMin;
-// var timeMax;
 d3.select("#data-choice").on("change", function(){
     console.log("New selection.");
     updateVisualization();});
@@ -182,17 +185,9 @@ function updateVisualization() {
         .attr("r", 10)
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide);
-      //   .on('click', function(d) {
-      //       d3.select("#barratio").remove();
-      //       return showBar(d.Year, d.SMinority);
-      // });;
 
     // Update
     circles
-    //   .on('click', function(d) {
-    //     d3.select("#tempbar").remove();
-    //     return showBar(d.Year);
-    //   })
         .style("opacity", 0.9)
         .transition()
         .duration(transitionDuration)
@@ -238,90 +233,4 @@ function updateVisualization() {
 
 }
 
-
-//Show details for a specific FIFA World Cup
-// var showEdition = function(d){
-//  console.log(d);
-//  $("#totalfaculty").text(d.Faculty);
-//  $("#totalstudents").text(d.Students);
-//  $("#mfaculty").text(d.FMinority);
-//  $("#mstudents").text(d.SMinority);
-//  $("#ffaculty").text(d.FWomen);
-//  $("#fstudents").text(d.SWomen);
-//  d3.select(".selected").classed("selected", false);
-//  d3.select(this).classed("selected", true);
-// };
-
-
-// function showBar(year){
-
-//   var margin = {top: 20, right: 20, bottom: 30, left: 40},
-//     width = 400 - margin.left - margin.right,
-//     height = 400 - margin.top - margin.bottom;
-
-//     var x = d3.scale.ordinal()
-//         .rangeRoundBands([0, width], .1);
-
-//     var y = d3.scale.linear()
-//         .range([height, 0]);
-
-//     var xAxis = d3.svg.axis()
-//         .scale(x)
-//         .orient("bottom");
-
-//     var yAxis = d3.svg.axis()
-//         .scale(y)
-//         .orient("left")
-//         .ticks(10, "%");
-
-//     var svg_bar_detail = d3.select("#barratio").append("svg")
-//         .attr("id", "tempbar")
-//         .attr("width", width + margin.left + margin.right)
-//         .attr("height", height + margin.top + margin.bottom)
-//       .append("g")
-//         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-//         loaddata();
-
-//         function loaddata(){
-
-//     d3.csv("data/2008.csv", function(error, data) {
-//       if (error) throw error;
-
-//       x.domain(data.map(function(d) { return d.Type; }));
-//       y.domain([0, d3.max(data, function(d) { return d.Percent; })]);
-
-//       svg_bar_detail.append("g")
-//           .attr("class", "x axis")
-//           .attr("transform", "translate(0," + height + ")")
-//           .call(xAxis);
-
-//       svg_bar_detail.append("g")
-//           .attr("class", "y axis")
-//           .call(yAxis)
-//         .append("text")
-//           .attr("transform", "rotate(-90)")
-//           .attr("y", 6)
-//           .attr("dy", ".71em")
-//           .style("text-anchor", "end")
-//           .text("Frequency");
-
-//       svg_bar_detail.selectAll(".bar")
-//           .data(data)
-//         .enter().append("rect")
-//           .attr("class", "bar")
-//           .attr("x", function(d) { return x(d.SMinority); })
-//           .attr("width", x.rangeBand())
-//           .attr("y", function(d) { return y(d.Ratio); })
-//           .attr("height", function(d) { return height - y(d.Ratio); });
-//     });
-
-
-//     function type(d) {
-//       d.SMinority = +d.SMinority;
-//       d.Ratio = +d.Ratio;
-//       return d;
-//     }
-// }
-// }
 
