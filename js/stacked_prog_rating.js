@@ -81,25 +81,15 @@ d3.csv("data/stacked_prog_rating_percentage2.csv", function(error, data) {
       .attr("width",  x_stack.rangeBand())
       .attr("y", function(d) { return y_stack(d.y1); })
       .attr("height", function(d) { return y_stack(d.y0) - y_stack(d.y1); })
-      .on('mouseover', function(d) {
-        d3.select("#prog_pie_info").text("Percentage of " + (d.gender).toLowerCase() + " in category " + d.name + ": " + (d.y1 - d.y0) + "%");
-        d3.select("#temppie").remove();
-        return showPie(d.name, d.gender);    
-      })
-      .on('mouseout', function(d) {
-        tip_stack.hide;
-        if (clicked == false) {
-          d3.select("#prog_pie_info").text("");
-          d3.select("#temppie").remove();
-        }
-      })
+      .on('mouseover', tip_stack.show)
+      .on('mouseout', tip_stack.hide)
       .on('click', function(d) {
-        clicked = true;
+        // clicked = true;
         d3.select("#prog_pie_info")
           .text("Percentage of " + (d.gender).toLowerCase() + " in category " + d.name + ": " + (d.y1 - d.y0) + "%");
         d3.select("#temppie").remove();
         return showPie(d.name, d.gender);
-        clicked = false;
+        // clicked = false;
       })
       .transition()
       .duration(1000)
