@@ -72,4 +72,5 @@ g.append("text")
             return "start";
         }
     })
-    .text(function(d) {return d.data.label + ": " + d.data.value});
+    .text(function(d) {return d.data.label + ": " + d.data.value})
+    .style("fill", "white");

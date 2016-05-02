@@ -66,4 +66,4 @@ g.append("text")
     .attr("transform", function(d) { return "translate(" + arcText.centroid(d) +")"; })
     .attr("dy", ".35em")
     .text(function(d) {return d.data.label + ": " + d.data.value})
-    .attr("fill","black");
+    .attr("fill","white");

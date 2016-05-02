@@ -87,6 +87,9 @@ function UpdateVisualization() {
         words_list = words_list.concat(d["words"]);
     })
 
+    // get number of words
+    var number_of_words = words_list.length;
+
     // create array of frequencies with words
 
     var word_frequencies = {};
