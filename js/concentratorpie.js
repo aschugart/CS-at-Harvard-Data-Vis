@@ -10,12 +10,10 @@ var numbers = [
 ];
 
 var svg = d3.select("#chart-area2").append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", width + margin.left - 20)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + width/2+ "," + height/2 + ")");
-
-console.log(radius);
 
 var colorscale = d3.scale.ordinal()
     .range(["#1C5672", "#560000"]);

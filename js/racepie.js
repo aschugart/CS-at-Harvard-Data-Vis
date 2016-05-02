@@ -1,9 +1,9 @@
 /**
  * Created by Thomas on 4/12/2016.
  */
-var margin = {top: 80, right: 0, bottom: 60, left: 60};
+var margin = {top: 80, right: 0, bottom: 60, left: 120};
 
-var width = 400,
+var width = 500,
     height = 300,
     radius = Math.min(width, height) / 2;
 
@@ -22,14 +22,9 @@ var svg = d3.select("#chart-area3").append("svg")
     .append("g")
     .attr("transform", "translate(" + width/2+ "," + height/2 + ")");
 
-console.log(radius);
-
 var colorscale = d3.scale.ordinal()
     //.range(["#A8BA95", "#AA6C64", "#EBDFE8", "#560000", "#DEA27A", "#1C5672"]);
     .range(["#c9a19c", "#AA6C64", "#ffcccc", "#560000", "#82acc9", "#1C5672"]);
-
-console.log(colorscale("Male"));
-console.log(colorscale("Female"));
 
 var tip = d3.tip()
    .attr('class', 'd3-tip')
