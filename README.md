@@ -1,6 +1,6 @@
 # Data Visualization: Understanding the CS Experience at Harvard
 
-# [*Link to Full Project*](http://alexabrahams.co.uk/cs171/)
+### [**Link to Full Project**](http://alexabrahams.co.uk/cs171/)
 
 This group project for Harvard's CS171 class uses JavaScript's D3 library, accompanied by data obtained from a Harvard Women in Computer Science survey with over 800 responents. Our goal with the project was to explore primarily the exact data regarding diversity in computer science (gender gap, racial gap, etc.), perceptions of computer science majors, as well as the rapid growth of student majors but not-so-rapid growth of faculty -- all to see how the computer science program has evolved over the years, while also showing through these visualizations the progress yet to be made.
 
